@@ -81,7 +81,6 @@ class General
 
         $sql .= " WHERE id = " . $id;
 
-//        return $sql;
         return mysqli_query($this->conn, $sql);
     }
 
@@ -89,7 +88,6 @@ class General
     {
         $sql = "DELETE FROM " . $table . " WHERE id = " . $id;
 
-//        return $sql;
         return mysqli_query($this->conn, $sql);
     }
 
