@@ -87,7 +87,7 @@ class UserController
                 $value = [$_POST['username'], $_POST['email'], $_POST['status']];
             }
 
-            $res = $this->user->update("'" . $id . "'", $column, $value);
+            $res = $this->user->update($id, $column, $value);
             if ($res == 1) {
                 $this->redirect('index.php?&r=user');
             } else {
@@ -110,7 +110,7 @@ class UserController
             throw new Exception('Internal error.');
         }
 
-        $this->user->delete("'" . $id . "'");
+        $this->user->delete($id);
 
         $this->redirect('index.php?&r=user');
     }

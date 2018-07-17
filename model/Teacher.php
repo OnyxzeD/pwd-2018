@@ -2,7 +2,7 @@
 require_once 'model/Services.php';
 require_once 'model/General.php';
 
-class User
+class Teacher
 {
     private $services = NULL;
     private $general = NULL;
@@ -15,10 +15,10 @@ class User
         $this->conn = $this->services->openDb();
     }
 
-    public function findUser($id)
+    public function findTeacher($id)
     {
         try {
-            $res = $this->general->selectBy("user", "*", "id = '$id'");
+            $res = $this->general->selectBy("guru", "*", "nip = '$id'");
             $this->services->closeDb($this->conn);
 
             return $res;
@@ -31,7 +31,7 @@ class User
     public function get()
     {
         try {
-            $res = $this->general->selectAll("user");
+            $res = $this->general->selectAll("guru");
             $this->services->closeDb($this->conn);
 
             return $res;
@@ -44,10 +44,8 @@ class User
     public function create($value)
     {
         try {
-            $id = $this->general->generateId('id', 'user', 'US');
-            array_unshift($value, $id);
-            $column = ['id', 'username', 'password', 'email', 'level', 'status'];
-            $res = $this->general->insert('user', $column, $value);
+            $column = ['nip', 'nama', 'jk', 'alamat', 'gelar', 'masa_bakti', 'level'];
+            $res = $this->general->insert('guru', $column, $value);
 
             return $res;
         } catch (Exception $e) {
@@ -59,7 +57,7 @@ class User
     public function update($id, $column, $value)
     {
         try {
-            $res = $this->general->update('user', $column, $value, "id = '$id'");
+            $res = $this->general->update('guru', $column, $value, "nip = '$id'");
 
             return $res;
         } catch (Exception $e) {
@@ -71,7 +69,7 @@ class User
     public function delete($id)
     {
         try {
-            $res = $this->general->delete('user', "id = '$id'");
+            $res = $this->general->delete('guru', "nip = '$id'");
 
             return $res;
         } catch (Exception $e) {
@@ -80,17 +78,6 @@ class User
         }
     }
 
-    public function auth($email, $pass)
-    {
-        try {
-            $sql = "SELECT * FROM user WHERE email = '" . $email . "' AND password = '" . $pass . "'";
-
-            return mysqli_query($this->conn, $sql);
-        } catch (Exception $e) {
-            $this->services->closeDb($this->conn);
-            throw $e;
-        }
-    }
 }
 
 ?>

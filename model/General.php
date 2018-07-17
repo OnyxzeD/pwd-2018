@@ -68,7 +68,7 @@ class General
         return mysqli_query($this->conn, $sql);
     }
 
-    public function update($table, $column, $value, $id)
+    public function update($table, $column, $value, $condition)
     {
         $sql = "UPDATE " . $table . " SET ";
 
@@ -79,15 +79,17 @@ class General
             }
         }
 
-        $sql .= " WHERE id = " . $id;
+        $sql .= " WHERE " . $condition;
 
+//        return $sql;
         return mysqli_query($this->conn, $sql);
     }
 
-    public function delete($table, $id)
+    public function delete($table, $condition)
     {
-        $sql = "DELETE FROM " . $table . " WHERE id = " . $id;
+        $sql = "DELETE FROM " . $table . " WHERE " . $condition;
 
+//        return $sql;
         return mysqli_query($this->conn, $sql);
     }
 

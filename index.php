@@ -1,10 +1,11 @@
 <?php
 session_start();
-require_once 'controller/LoginController.php';
-require_once 'controller/NewsController.php';
 require_once 'controller/HomeController.php';
+require_once 'controller/NewsController.php';
 require_once 'controller/BannerController.php';
+require_once 'controller/TeacherController.php';
 require_once 'controller/UserController.php';
+require_once 'controller/LoginController.php';
 
 $op = isset($_GET['r']) ? $_GET['r'] : NULL;
 try {
@@ -20,6 +21,12 @@ try {
             $controller->handleRequest();
         } elseif ($op == 'banner') {
             $controller = new BannerController();
+            $controller->handleRequest();
+        } elseif ($op == 'student') {
+            $controller = new BannerController();
+            $controller->handleRequest();
+        } elseif ($op == 'teacher') {
+            $controller = new TeacherController();
             $controller->handleRequest();
         } elseif ($op == 'user') {
             $controller = new UserController();

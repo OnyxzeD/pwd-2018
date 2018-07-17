@@ -1,15 +1,4 @@
 <section class="sidebar">
-    <!-- search form -->
-<!--    <form action="#" method="get" class="sidebar-form">-->
-<!--        <div class="input-group">-->
-<!--            <input type="text" name="q" class="form-control" placeholder="Search...">-->
-<!--            <span class="input-group-btn">-->
-<!--                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>-->
-<!--                </button>-->
-<!--              </span>-->
-<!--        </div>-->
-<!--    </form>-->
-    <!-- /.search form -->
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
@@ -19,13 +8,23 @@
             </a>
         </li>
         <li>
+            <a href="<?php echo $base_url_index ?>&r=news">
+                <i class="fa fa-newspaper-o"></i> <span>Berita</span>
+            </a>
+        </li>
+        <li>
             <a href="<?php echo $base_url_index ?>&r=banner">
                 <i class="fa fa-newspaper-o"></i> <span>Banner</span>
             </a>
         </li>
         <li>
             <a href="<?php echo $base_url_index ?>&r=news">
-                <i class="fa fa-newspaper-o"></i> <span>Berita</span>
+                <i class="fa fa-user"></i> <span>Siswa</span>
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo $base_url_index ?>&r=teacher">
+                <i class="fa fa-users"></i> <span>Guru</span>
             </a>
         </li>
         <li>
