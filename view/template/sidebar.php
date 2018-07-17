@@ -18,7 +18,7 @@
             </a>
         </li>
         <li>
-            <a href="<?php echo $base_url_index ?>&r=news">
+            <a href="<?php echo $base_url_index ?>&r=student">
                 <i class="fa fa-user"></i> <span>Siswa</span>
             </a>
         </li>
@@ -37,12 +37,14 @@
                 <i class="fa fa-picture-o"></i> <span>Galeri</span>
             </a>
         </li>
-        <li class="header">Pengaturan</li>
-        <li>
-            <a href="<?php echo $base_url_index ?>&r=user">
-                <i class="fa fa-user"></i> <span>Pengguna</span>
-            </a>
-        </li>
+        <?php if ($_SESSION['account']['level'] == 1) { ?>
+            <li class="header">Pengaturan</li>
+            <li>
+                <a href="<?php echo $base_url_index ?>&r=user">
+                    <i class="fa fa-user"></i> <span>Pengguna</span>
+                </a>
+            </li>
+        <?php } ?>
     </ul>
 </section>
 <!-- /.sidebar -->

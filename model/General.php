@@ -25,6 +25,13 @@ class General
         return mysqli_query($this->conn, $sql);
     }
 
+    public function selectOrder($table, $order)
+    {
+        $sql = "SELECT * FROM " . $table . " ORDER BY " . $order;
+
+        return mysqli_query($this->conn, $sql);
+    }
+
     public function selectBy($table, $column, $condition)
     {
         $sql = "SELECT ";
@@ -65,6 +72,7 @@ class General
 
         $sql .= ")";
 
+//        return $sql;
         return mysqli_query($this->conn, $sql);
     }
 
@@ -81,7 +89,6 @@ class General
 
         $sql .= " WHERE " . $condition;
 
-//        return $sql;
         return mysqli_query($this->conn, $sql);
     }
 
@@ -89,7 +96,6 @@ class General
     {
         $sql = "DELETE FROM " . $table . " WHERE " . $condition;
 
-//        return $sql;
         return mysqli_query($this->conn, $sql);
     }
 

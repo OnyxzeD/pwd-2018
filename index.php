@@ -3,6 +3,7 @@ session_start();
 require_once 'controller/HomeController.php';
 require_once 'controller/NewsController.php';
 require_once 'controller/BannerController.php';
+require_once 'controller/StudentController.php';
 require_once 'controller/TeacherController.php';
 require_once 'controller/UserController.php';
 require_once 'controller/LoginController.php';
@@ -23,7 +24,7 @@ try {
             $controller = new BannerController();
             $controller->handleRequest();
         } elseif ($op == 'student') {
-            $controller = new BannerController();
+            $controller = new StudentController();
             $controller->handleRequest();
         } elseif ($op == 'teacher') {
             $controller = new TeacherController();
