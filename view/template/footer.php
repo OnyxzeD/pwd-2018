@@ -38,3 +38,5 @@
 <script src="<?php echo $base_url ?>assets/AdminLTE-2.4.3/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo $base_url ?>assets/AdminLTE-2.4.3/dist/js/demo.js"></script>
+<!-- Custom Js config -->
+<script src="<?php echo $base_url ?>assets/js/app.js"></script>

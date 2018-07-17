@@ -1,6 +1,10 @@
 <?php
 $base_url = 'http://localhost/CRUD-NATIVE/';
 $base_url_index = 'http://localhost/CRUD-NATIVE/index.php?';
+
+//$basepath = dirname($_SERVER["SCRIPT_NAME"]).'/';
+//$baseurl = baseurl();
+//$basedir = dirname($_SERVER["SCRIPT_FILENAME"]).'/';
 ?>
 <!DOCTYPE html>
 <html>
@@ -56,30 +60,71 @@ $base_url_index = 'http://localhost/CRUD-NATIVE/index.php?';
 
     <header class="main-header">
         <?php
-            include 'view/template/header.php';
+        include 'view/template/header.php';
         ?>
     </header>
     <!-- Left side column. contains the logo and sidebar -->
     <aside class="main-sidebar">
         <?php
-            include 'view/template/sidebar.php';
+        include 'view/template/sidebar.php';
         ?>
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                <?= $header ?>
+                <small>Control panel</small>
+            </h1>
+            <!--<ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#">UI</a></li>
+                <li class="active">Buttons</li>
+            </ol>-->
+        </section>
+
+        <!-- Main content-->
         <section class="content">
             <?php
-                include $content;
+            include $content;
             ?>
         </section>
     </div>
+
+    <!-- Free Modal -->
+    <div id="FreeModal"></div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal-default">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Default Modal</h4>
+                </div>
+                <div class="modal-body">
+                    <p>One fine body&hellip;</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
     <!-- /.content-wrapper -->
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
             <b>Version</b> 2.4.0
         </div>
-        <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+        <strong>Copyright &copy; 2018 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
         reserved.
     </footer>
 
@@ -88,6 +133,10 @@ $base_url_index = 'http://localhost/CRUD-NATIVE/index.php?';
     <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
+
+<script>
+    var baseurl = '<?= $base_url ?>';
+</script>
 
 <!-- Scripts Wrapper-->
 <?php include 'view/template/footer.php'; ?>

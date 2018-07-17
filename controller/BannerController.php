@@ -49,6 +49,7 @@ class BannerController {
         $orderby = isset($_GET['orderby'])?$_GET['orderby']:'id';
         $news = $this->news->getAllNews($orderby);
         $content = 'view/banner/index.php';
+        $header = 'Banner';
         include 'view/template/layout.php';
     }
     

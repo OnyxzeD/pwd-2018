@@ -1,52 +1,98 @@
-<?php
-    include 'view/template/header.php';
-?>
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title"><?= $ttl ?></h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <?php if (isset($errMsg)) { ?>
+                    <div class="alert alert-warning alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-warning"></i> Info!</h4>
+                        <?= $errMsg ?>
+                    </div>
+                <?php } ?>
+                <form role="form" action="<?= $formAction ?>" name="registration"
+                      method="post">
+                    <input type="hidden" name="id" value="<?= (isset($data['id']) ? $data['id'] : "") ?>">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email</label>
+                            <input type="email" class="form-control" name="email" placeholder="Enter email"
+                                   value="<?= (isset($data['email']) ? $data['email'] : "") ?>">
+                        </div>
+                        <?php if (!isset($data['id'])) { ?>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" name="password"
+                                       placeholder="Password">
+                            </div>
+                        <?php } else { ?>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password Lama</label>
+                                <input type="password" class="form-control" name="passwordLama"
+                                       placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password Baru</label>
+                                <input type="password" class="form-control" name="passwordBaru"
+                                       placeholder="Password">
+                            </div>
+                        <?php } ?>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Username</label>
+                            <input type="text" class="form-control" name="username" placeholder="Username"
+                                   value="<?= (isset($data['username']) ? $data['username'] : "") ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputStatus">Status</label>
+                            <div class="row" id="inputStatus">
+                                <div class="col-md-2">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                          <input type="radio" name="status"
+                                                 value="1" <?= (isset($data['status']) && ($data['status'] == 1) ? "checked" : "") ?> >
+                                        </span>
+                                        <input type="text" class="form-control" value="Aktif" readonly>
+                                    </div>
+                                    <!-- /input-group -->
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                          <input type="radio" name="status"
+                                                 value="0" <?= (isset($data['status']) && ($data['status'] == 0) ? "checked" : "") ?>>
+                                        </span>
+                                        <input type="text" class="form-control" value="Tidak Aktif" readonly>
+                                    </div>
+                                    <!-- /input-group -->
+                                </div>
+                            </div>
+                        </div>
+                        <!--                        <div class="form-group">-->
+                        <!--                            <label for="exampleInputFile">File input</label>-->
+                        <!--                            <input type="file" id="exampleInputFile">-->
+                        <!---->
+                        <!--                            <p class="help-block">Example block-level help text here.</p>-->
+                        <!--                        </div>-->
+                        <!--                        <div class="checkbox">-->
+                        <!--                            <label>-->
+                        <!--                                <input type="checkbox"> Check me out-->
+                        <!--                            </label>-->
+                        <!--                        </div>-->
+                    </div>
+                    <!-- /.box-body -->
 
-<div class="col-sm-9 col-md-9  main" style="margin-top:80px;">
-        <?php
-        if ( $errors ) {
-
-            print '<div class="alert alert-danger" role="alert">';
-            foreach ( $errors as $field => $error ) {
-                print '<strong>Oh snap!</strong> '.htmlentities($error);
-            }
-            print '</div>';
-        }
-        ?>
-
-        <form method="POST" action="">
-          <div class="form-group">
-            <label for="name">Author</label>
-            <select class="form-control" name="author"> 
-              <option value="">Select Reporter</option> 
-              <?php foreach ($listReporter as $rep): ?>
-              <option <?php if ($rep->id == $author) { echo 'selected'; } ?> value="<?php print htmlentities($rep->id); ?>"><?php print htmlentities($rep->nama); ?></option> 
-              <?php endforeach; ?>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="name">Category</label>
-            <select class="form-control" name="cat"> 
-              <option value="">Pilih Category</option> 
-              <?php foreach ($listCategory as $cat): ?>
-              <option  <?php if ($cat->id == $ct_id) { echo 'selected'; } ?>  value="<?php print htmlentities($cat->id); ?>"><?php print htmlentities($cat->name); ?></option> 
-              <?php endforeach; ?>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="name">Title</label>
-            <input type="text" class="form-control" value="<?php print htmlentities($title) ?>" name="title" placeholder="title">
-          </div>
-          <div class="form-group">
-            <label for="name">content</label>
-            <textarea class="form-control" name="content" id="editor" rows="3"><?php print htmlentities($content) ?></textarea>
-          </div>
-          <input type="hidden" name="form-submitted" value="1" />
-          <input type="hidden" name="id" value="<?php print htmlentities($id) ?>" />
-          <button type="submit" class="btn btn-default">Submit</button>
-        </form>
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <a href="<?php echo $base_url_index ?>&r=user" class="btn btn-default">Batal</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.box -->
+    </div>
 </div>
-      
-<?php
-    include 'view/template/footer.php';
-?>

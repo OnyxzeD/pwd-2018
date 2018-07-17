@@ -2,22 +2,21 @@
 require_once 'model/ValidationException.php';
 
 
-class Services {
+class Services
+{
+    public function openDb()
+    {
+        if (!$conn = mysqli_connect("localhost", "root", "", "crud")) {
+            throw new Exception("Connection to the database server failed! " . mysqli_connect_error());
+        }
 
-    public function openDb() {
-        if (!mysql_connect("localhost", "root", "")) {
-            throw new Exception("Connection to the database server failed!");
-        }
-        if (!mysql_select_db("crud")) {
-            throw new Exception("No crud database found on database server.");
-        }
+        return $conn;
     }
-    
-    public function closeDb() {
-        mysql_close();
+
+    public function closeDb($conn)
+    {
+        mysqli_close($conn);
     }
-       
-    
 }
 
 ?>

@@ -1,52 +1,48 @@
-<?php
-    include 'view/template/header.php';
-?>
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Tambah Pengguna</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Username</th>
+                            <th>Level</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                        </thead>
 
-<div class="col-sm-9 col-md-9  main" style="margin-top:80px;">
-        <?php
-        if ( $errors ) {
-
-            print '<div class="alert alert-danger" role="alert">';
-            foreach ( $errors as $field => $error ) {
-                print '<strong>Oh snap!</strong> '.htmlentities($error);
-            }
-            print '</div>';
-        }
-        ?>
-
-        <form method="POST" action="">
-          <div class="form-group">
-            <label for="name">Author</label>
-            <select class="form-control" name="author"> 
-              <option value="">Select Reporter</option> 
-              <?php foreach ($listReporter as $rep): ?>
-              <option <?php if ($rep->id == $author) { echo 'selected'; } ?> value="<?php print htmlentities($rep->id); ?>"><?php print htmlentities($rep->nama); ?></option> 
-              <?php endforeach; ?>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="name">Category</label>
-            <select class="form-control" name="cat"> 
-              <option value="">Pilih Category</option> 
-              <?php foreach ($listCategory as $cat): ?>
-              <option  <?php if ($cat->id == $ct_id) { echo 'selected'; } ?>  value="<?php print htmlentities($cat->id); ?>"><?php print htmlentities($cat->name); ?></option> 
-              <?php endforeach; ?>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="name">Title</label>
-            <input type="text" class="form-control" value="<?php print htmlentities($title) ?>" name="title" placeholder="title">
-          </div>
-          <div class="form-group">
-            <label for="name">content</label>
-            <textarea class="form-control" name="content" id="editor" rows="3"><?php print htmlentities($content) ?></textarea>
-          </div>
-          <input type="hidden" name="form-submitted" value="1" />
-          <input type="hidden" name="id" value="<?php print htmlentities($id) ?>" />
-          <button type="submit" class="btn btn-default">Submit</button>
-        </form>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>admin</td>
+                            <td>Administrator</td>
+                            <td>Aktif</td>
+                            <td>
+                                <a class="btn btn-social btn-info"
+                                   href="<?php echo $base_url_index ?>r=news&op=update&id=<?php print $nc->id; ?>">
+                                    <i class="fa fa-pencil"></i> ubah
+                                </a>
+                                <a class="btn btn-social btn-danger"
+                                   href="<?php echo $base_url_index ?>r=news&op=delete&id=<?php print $nc->id; ?>"
+                                   onclick="return confirm('Yakin Hapus data?')">
+                                    <i class="fa fa-trash"></i> hapus
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /.box -->
+    </div>
 </div>
-      
-<?php
-    include 'view/template/footer.php';
-?>
