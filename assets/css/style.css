@@ -54,3 +54,40 @@ div[data-role="editor-toolbar"] {
   padding: 5px;
   font-weight: 1000;
 }
+
+.bg-sd{
+  background-color: #612020;
+  color: #ffffff;
+}
+
+h1.text-white{
+  background-color: #ffffff !important;
+  co
+}
+.menu1 h1{
+  font-weight: 400!important;
+  border-top: 5px solid #ffffff !important;
+  border-left: 5px solid #ffffff !important;
+  padding: 5px;
+}
+
+.menu1 h1:hover{
+  -webkit-box-shadow: 13px 13px 10px #808080;
+  -moz-box-shadow: 13px 13px 10px #808080;
+  box-shadow: 13px 13px 10px #808080;
+  color: #ffffff !important; 
+  background-color: #612020;
+  transition: 0.3s ease-in-out;
+}
+.menu1 a:hover{
+  text-decoration: none;
+}
+
+.menu1 h1{
+  background-color: #ffffff;
+  margin-bottom: -1px;
+}
+
+.menu-text{
+  color: #612020;
+}
