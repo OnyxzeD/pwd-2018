@@ -1176,6 +1176,7 @@ function choose(elem, value1, value2) {
  All init
  */
 $(document).ready(function () {
+    // dateTimePicker_Set();
     Search();
     x_BM_GetForm_DirectSubmit_Init();
     x_BM_GetForm_AjaxSubmit_Init();

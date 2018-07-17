@@ -51,7 +51,7 @@ class StudentController
     public function save()
     {
         if (isset($_POST['nis']) && isset($_POST['nama'])) {
-            $value = [$_POST['nis'], $_POST['nama'], $_POST['jk'], $_POST['alamat'], $_POST['gelar'], $_POST['masa_bakti'], $_POST['jabatan']];
+            $value = [$_POST['nis'], $_POST['nama'], $_POST['jk'], $this->convertDate($_POST['tgl_lahir'], 'db'), $_POST['alamat'], $_POST['nama_ortu'], $_POST['telp_ortu'], $_POST['status']];
             $cek = mysqli_num_rows($this->student->findStudent($_POST['nis']));
             if ($cek > 0) {
                 $errMsg = "Maaf, NIS sudah terdaftar";
@@ -104,9 +104,10 @@ class StudentController
     {
         $id = (isset($_GET['id']) ? $_GET['id'] : $_POST['id']);
         $data = mysqli_fetch_assoc($this->student->findStudent($id));
+        $data['tgl_lahir'] = $this->convertDate($data['tgl_lahir'], 'indo');
         if (isset($_POST['nis'])) {
-            $column = ['nama', 'jk', 'alamat', 'gelar', 'masa_bakti', 'level'];
-            $value = [$_POST['nama'], $_POST['jk'], $_POST['alamat'], $_POST['gelar'], $_POST['masa_bakti'], $_POST['jabatan']];
+            $column = ['nis', 'nama', 'jk', 'tgl_lahir', 'alamat', 'nama_ortu', 'telp_ortu', 'status'];
+            $value = [$_POST['nis'], $_POST['nama'], $_POST['jk'], $this->convertDate($_POST['tgl_lahir'], 'db'), $_POST['alamat'], $_POST['nama_ortu'], $_POST['telp_ortu'], $_POST['status']];
 
             $res = $this->student->update($id, $column, $value);
             if ($res == 1) {
@@ -134,6 +135,39 @@ class StudentController
         $this->student->delete($id);
 
         $this->redirect('index.php?&r=student');
+    }
+
+    public function convertDate($data, $format)
+    {
+        if ($data == '-' || $data == null || $data == '') {
+            return "-";
+        }
+
+        if ($format == 'indo') {
+            $dt = explode(" ", $data);
+            $date = explode("-", $dt[0]);
+            $bulan = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+            $converted = $date[2] . " " . $bulan[(int)($date[1]) - 1] . " " . $date[0];
+        } else if ($format == 'db') {
+            // convert input format to YYYY-mm-dd
+            $date = explode(" ", $data);
+            $bulan = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            $bln = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des'];
+            if (strlen($date[1]) == 3) {
+                $month = array_search($date[1], $bln) + 1;
+            } else {
+                $month = array_search($date[1], $bulan) + 1;
+            }
+
+            if ($month < 10) {
+                $converted = $date[2] . '-0' . $month . '-' . $date[0];
+            } else {
+                $converted = $date[2] . '-' . $month . '-' . $date[0];
+            }
+        }
+
+        return $converted;
     }
 
 }

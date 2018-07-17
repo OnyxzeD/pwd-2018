@@ -56,8 +56,14 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tanggal Lahir</label>
-                                <input type="date" data-date-format="dd MM YYYY" class="form-control" name="tgl_lahir" placeholder="Tanggal Lahir"
-                                   value="<?= (isset($data['tgl_lahir']) ? $data['tgl_lahir'] : "") ?>">
+                            <div class="input-group date">
+                                <input type="text" class="form-control pull-right" id="datepicker" name="tgl_lahir"
+                                       placeholder="Tanggal Lahir"
+                                       value="<?= (isset($data['tgl_lahir']) ? $data['tgl_lahir'] : "") ?>">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Alamat</label>
@@ -76,9 +82,27 @@
                         </div>
                         <div class="form-group">
                             <label>Status</label>
-                            <select class="form-control" name="jabatan">
+                            <select class="form-control" name="status">
                                 <option value="1" <?= (isset($data['status']) && ($data['status'] == 1) ? "selected" : "") ?> >
                                     Kelas 1
+                                </option>
+                                <option value="2" <?= (isset($data['status']) && ($data['status'] == 2) ? "selected" : "") ?> >
+                                    Kelas 2
+                                </option>
+                                <option value="3" <?= (isset($data['status']) && ($data['status'] == 3) ? "selected" : "") ?> >
+                                    Kelas 3
+                                </option>
+                                <option value="4" <?= (isset($data['status']) && ($data['status'] == 4) ? "selected" : "") ?> >
+                                    Kelas 4
+                                </option>
+                                <option value="5" <?= (isset($data['status']) && ($data['status'] == 5) ? "selected" : "") ?> >
+                                    Kelas 5
+                                </option>
+                                <option value="6" <?= (isset($data['status']) && ($data['status'] == 6) ? "selected" : "") ?> >
+                                    Kelas 6
+                                </option>
+                                <option value="7" <?= (isset($data['status']) && ($data['status'] == 7) ? "selected" : "") ?> >
+                                    Alumni
                                 </option>
                             </select>
                         </div>

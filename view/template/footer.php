@@ -1,3 +1,8 @@
+<script>
+    var startDate = "2000-01-01";
+    var maxDate = "3000-01-01";
+</script>
+
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
@@ -40,3 +45,12 @@
 <script src="<?php echo $base_url ?>assets/AdminLTE-2.4.3/dist/js/demo.js"></script>
 <!-- Custom Js config -->
 <script src="<?php echo $base_url ?>assets/js/app.js"></script>
+
+<script>
+    $(function () {
+        $('#datepicker').datepicker({
+            autoclose: true,
+            format: "dd MM yyyy"
+        })
+    })
+</script>
