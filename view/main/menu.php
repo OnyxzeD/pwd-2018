@@ -1,4 +1,4 @@
-  <div class="py-5 bg-primary">
+  <div class=" bg-sd">
     <div class="container">
       <div class="row">
         <div class="col-md-3">
@@ -9,33 +9,33 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <h1 class="text-white"> . </h1>
+          <br>
         </div>
       </div>
-      <div class="row text-center text-success">
+      <div class="row text-center menu1">
         <a class="col-md-2" href="blank.php">
-          <div>
-            <h1 class="text-white">Home</h1>
-          </div>
+          <div class="menu-div">
+            <h1 class="menu-text">Home</h1>
+          </div class="menu-div">
         </a>
         <a class="col-md-2" href="berita.php">
-          <div>
-            <h1 class="text-white">Berita</h1>
-          </div>
+          <div class="menu-div">
+            <h1 class="menu-text">Berita</h1>
+          </div class="menu-div">
         </a>
         <a class="col-md-2" href="profil.php">
-          <div>
-            <h1 class="text-white">Profil</h1>
-          </div>
+          <div class="menu-div">
+            <h1 class="menu-text">Profil</h1>
+          </div class="menu-div">
         </a>
         <a class="col-md-2" href="galeri.php">
-          <div>
-            <h1 class="text-white">Galeri</h1>
+          <div class="menu-div">
+            <h1 class="menu-text">Galeri</h1>
           </div>
         </a>
         <a href="#" class="col-md-2" data-toggle="modal" data-target="#login-modal">
         <div>
-          <h1 class="text-white">Login</h1>
+          <h1 class="menu-text">Login</h1>
         </div>
         </a>
         <div class="col-md-12"></div>
