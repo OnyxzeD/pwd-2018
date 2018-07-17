@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once 'controller/HomeController.php';
+require_once 'controller/FrontController.php';
 require_once 'controller/NewsController.php';
 require_once 'controller/BannerController.php';
 require_once 'controller/StudentController.php';
@@ -11,11 +12,21 @@ require_once 'controller/LoginController.php';
 $op = isset($_GET['r']) ? $_GET['r'] : NULL;
 try {
     if (!isset($_SESSION['account'])) {
-        $controller = new LoginController();
-        $controller->handleRequest();
+        if (!$op || $op == 'front') {
+            $controller = new FrontController();
+            $controller->handleRequest();
+        } elseif ($op == 'login') {
+            $controller = new LoginController();
+            $controller->handleRequest();
+        } else {
+            $this->showError("Page not found", "Page for operation " . $op . " was not found!");
+        }
     } else {
-        if (!$op) {
+        if (!$op || $op == 'admin') {
             $controller = new HomeController();
+            $controller->handleRequest();
+        } elseif ($op == 'front') {
+            $controller = new FrontController();
             $controller->handleRequest();
         } elseif ($op == 'news') {
             $controller = new NewsController();

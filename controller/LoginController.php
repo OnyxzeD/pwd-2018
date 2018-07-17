@@ -38,6 +38,9 @@ class LoginController
 
     public function login()
     {
+        if (isset($_SESSION['account'])) {
+            $this->redirect('index.php?r=admin');
+        }
         $content = 'view/home/login.php';
         $header = 'Dasboard';
         include 'view/home/login.php';

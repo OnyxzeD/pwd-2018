@@ -8,6 +8,11 @@
             </a>
         </li>
         <li>
+            <a href="<?php echo $base_url_index ?>&r=front">
+                <i class="fa fa-backward"></i> <span>Halaman User</span>
+            </a>
+        </li>
+        <li>
             <a href="<?php echo $base_url_index ?>&r=news">
                 <i class="fa fa-newspaper-o"></i> <span>Berita</span>
             </a>
