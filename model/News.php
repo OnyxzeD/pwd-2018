@@ -1,8 +1,5 @@
 <?php
 require_once 'model/Services.php';
-require_once 'model/Reporter.php';
-require_once 'model/Categories.php';
-require_once 'model/NewsCategories.php';
 /**
  * Table data News.
  * 

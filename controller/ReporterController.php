@@ -7,7 +7,7 @@ class ReporterController {
     private $reporter = NULL;
     
     public function __construct() {
-        $this->reporter = new Reporter();
+//        $this->reporter = new Reporter();
     }
     
     public function redirect($location) {

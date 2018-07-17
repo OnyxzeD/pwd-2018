@@ -1,7 +1,5 @@
 <?php
 
-require_once 'controller/CategoriesController.php';
-require_once 'controller/ReporterController.php';
 require_once 'controller/NewsController.php';
 require_once 'controller/HomeController.php';
 require_once 'controller/BannerController.php';
@@ -13,10 +11,10 @@ try {
         $controller = new HomeController();
         $controller->handleRequest();
     } elseif ($op == 'categories') {
-        $controller = new CategoriesController();
+//        $controller = new CategoriesController();
         $controller->handleRequest();
     } elseif ($op == 'reporter') {
-        $controller = new ReporterController();
+//        $controller = new ReporterController();
         $controller->handleRequest();
     } elseif ($op == 'news') {
         $controller = new NewsController();

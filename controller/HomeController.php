@@ -1,9 +1,6 @@
 <?php
 
 require_once 'model/News.php';
-require_once 'model/Reporter.php';
-require_once 'model/Categories.php';
-require_once 'model/NewsCategories.php';
 
 class HomeController
 {

@@ -1,10 +1,6 @@
 <?php
 $base_url = 'http://localhost/CRUD-NATIVE/';
 $base_url_index = 'http://localhost/CRUD-NATIVE/index.php?';
-
-//$basepath = dirname($_SERVER["SCRIPT_NAME"]).'/';
-//$baseurl = baseurl();
-//$basedir = dirname($_SERVER["SCRIPT_FILENAME"]).'/';
 ?>
 <!DOCTYPE html>
 <html>

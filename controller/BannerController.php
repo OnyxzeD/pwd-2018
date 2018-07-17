@@ -1,9 +1,6 @@
 <?php
 
 require_once 'model/News.php';
-require_once 'model/Reporter.php';
-require_once 'model/Categories.php';
-require_once 'model/NewsCategories.php';
 
 class BannerController {
     
@@ -14,9 +11,6 @@ class BannerController {
     
     public function __construct() {
         $this->news = new News();
-        $this->reporter = new Reporter();
-        $this->categories = new Categories();
-        $this->newsCategories = new NewsCategories();
     }
     
     public function redirect($location) {
