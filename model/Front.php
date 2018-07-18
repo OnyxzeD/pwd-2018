@@ -27,6 +27,18 @@ class Front
         }
     }
 
+    public function listBerita()
+    {
+        try {
+            $res = $this->general->selectOrder("news", "created_at ASC limit 6");
+
+            return $res;
+        } catch (Exception $e) {
+            $this->services->closeDb($this->conn);
+            throw $e;
+        }
+    }
+
     public function get()
     {
         try {
