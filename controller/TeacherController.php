@@ -49,7 +49,7 @@ class TeacherController
     public function save()
     {
         if (isset($_POST['nip']) && isset($_POST['nama'])) {
-            $value = [$_POST['nip'], $_POST['nama'], $_POST['jk'], $_POST['alamat'], $_POST['gelar'], $_POST['masa_bakti'], $_POST['jabatan']];
+            $value = [$_POST['nip'], $_POST['nama'], $_POST['jk'], $_POST['alamat'], $_POST['gelar'], $_POST['masa_bakti'], $_POST['jabatan'], $_POST['quotes']];
             $cek = mysqli_num_rows($this->teacher->findTeacher($_POST['nip']));
             if ($cek > 0) {
                 $errMsg = "Maaf, NIP sudah terdaftar";
@@ -77,11 +77,10 @@ class TeacherController
         $id = (isset($_GET['id']) ? $_GET['id'] : $_POST['id']);
         $data = mysqli_fetch_assoc($this->teacher->findTeacher($id));
         if (isset($_POST['nip'])) {
-            $column = ['nama', 'jk', 'alamat', 'gelar', 'masa_bakti', 'level'];
-            $value = [$_POST['nama'], $_POST['jk'], $_POST['alamat'], $_POST['gelar'], $_POST['masa_bakti'], $_POST['jabatan']];
+            $column = ['nama', 'jk', 'alamat', 'gelar', 'masa_bakti', 'level', 'quotes'];
+            $value = [$_POST['nama'], $_POST['jk'], $_POST['alamat'], $_POST['gelar'], $_POST['masa_bakti'], $_POST['jabatan'], $_POST['quotes']];
 
             $res = $this->teacher->update($id, $column, $value);
-//            echo $res;
             if ($res == 1) {
                 $this->redirect('index.php?&r=teacher');
             } else {

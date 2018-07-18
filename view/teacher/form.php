@@ -22,7 +22,7 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">NIP</label>
                             <input type="text" class="form-control" placeholder="NIP" name="nip"
-                                   value="<?= (isset($data['nip']) ? $data['nip'] : "") ?>" >
+                                   value="<?= (isset($data['nip']) ? $data['nip'] : "") ?>">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nama</label>
@@ -68,6 +68,11 @@
                             <label for="exampleInputEmail1">Masa Bakti</label>
                             <input type="text" class="form-control" name="masa_bakti" placeholder="Masa Bakti"
                                    value="<?= (isset($data['masa_bakti']) ? $data['masa_bakti'] : "") ?>">
+                        </div>
+                        <div class="form-group">
+                            <label>Quotes</label>
+                            <textarea class="form-control" rows="3" placeholder="Enter ..." name="quotes"
+                                      value="<?= (isset($data['quotes']) ? $data['quotes'] : "") ?>"></textarea>
                         </div>
                         <div class="form-group">
                             <label>Jabatan</label>
