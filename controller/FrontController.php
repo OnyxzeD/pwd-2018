@@ -47,6 +47,7 @@ class FrontController
 
     public function berita()
     {
+        $data = $this->front->listGuru();
         include 'view/main/berita.php';
     }
 
@@ -78,5 +79,11 @@ class FrontController
     }
 
 }
+
+// tambah asal tk siswa
+// sebelum import masukkan form
+// upload foto guru
+// crud berita
+// pagination
 
 ?>

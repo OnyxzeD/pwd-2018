@@ -32,11 +32,11 @@
                 <i class="fa fa-users"></i> <span>Guru</span>
             </a>
         </li>
-        <li>
-            <a href="<?php echo $base_url_index ?>&r=news">
-                <i class="fa fa-pencil-square-o"></i> <span>Profile</span>
-            </a>
-        </li>
+<!--        <li>-->
+<!--            <a href="--><?php //echo $base_url_index ?><!--&r=news">-->
+<!--                <i class="fa fa-pencil-square-o"></i> <span>Profile</span>-->
+<!--            </a>-->
+<!--        </li>-->
         <li>
             <a href="<?php echo $base_url_index ?>&r=news">
                 <i class="fa fa-picture-o"></i> <span>Galeri</span>
