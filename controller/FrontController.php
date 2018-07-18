@@ -47,7 +47,7 @@ class FrontController
 
     public function berita()
     {
-        $data = $this->front->listGuru();
+        $data = $this->front->listBerita();
         include 'view/main/berita.php';
     }
 
