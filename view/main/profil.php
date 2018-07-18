@@ -91,8 +91,9 @@ $base_url_index = 'http://localhost/CRUD-NATIVE/index.php?';
             while ($guru = mysqli_fetch_assoc($data)) {
                 ?>
                 <div class="col-md-4 p-4">
-                    <img class="img-fluid d-block rounded-circle mx-auto"
-                         src="<?php echo $base_url ?>assets/img/<?= $guru['foto'] ?>">
+                    <img class="img-fluid d-block rounded-circle mx-auto" style="width: 128px; height: 128px"
+                         src="<?php echo $base_url ?>assets/img/<?= $guru['foto'] ?>"
+                         onerror="this.src='<?php echo $base_url ?>assets/img/user.jpg'">
                     <p class="my-4">
                         <i><?= ($guru['quotes'] != null ? $guru['quotes'] : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
                             Aenean massa.") ?></i>

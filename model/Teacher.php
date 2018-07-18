@@ -44,7 +44,7 @@ class Teacher
     public function create($value)
     {
         try {
-            $column = ['nip', 'nama', 'jk', 'alamat', 'gelar', 'masa_bakti', 'level', 'quotes'];
+            $column = ['nip', 'nama', 'jk', 'alamat', 'gelar', 'masa_bakti', 'level', 'quotes', 'foto'];
             $res = $this->general->insert('guru', $column, $value);
 
             return $res;

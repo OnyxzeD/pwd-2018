@@ -6,6 +6,7 @@ class TeacherController
 {
 
     private $teacher = NULL;
+    private $base_url = 'D:/xampp/htdocs/CRUD-NATIVE';
 
     public function __construct()
     {
@@ -49,17 +50,46 @@ class TeacherController
     public function save()
     {
         if (isset($_POST['nip']) && isset($_POST['nama'])) {
+            $data = $_POST;
             $value = [$_POST['nip'], $_POST['nama'], $_POST['jk'], $_POST['alamat'], $_POST['gelar'], $_POST['masa_bakti'], $_POST['jabatan'], $_POST['quotes']];
-            $cek = mysqli_num_rows($this->teacher->findTeacher($_POST['nip']));
-            if ($cek > 0) {
-                $errMsg = "Maaf, NIP sudah terdaftar";
-                $data = $_POST;
-            } else {
-                $res = $this->teacher->create($value);
-                if ($res == 1) {
-                    $this->redirect('index.php?&r=teacher');
-                } else {
-                    $errMsg = $res;
+            $img = $_FILES['foto'];
+            if (isset($_FILES['foto'])) {
+                $errors = array();
+                $file_name = $img['name'];
+                $file_size = $img['size'];
+                $file_tmp = $img['tmp_name'];
+                $file_type = $img['type'];
+                $file_ext = strtolower(end(explode('.', $img['name'])));
+
+                $expensions = array("jpeg", "jpg", "png");
+
+                if (in_array($file_ext, $expensions) === false) {
+                    $errors[] = "extension not allowed, please choose a JPEG or PNG file.";
+                    $errMsg = "Silihkan Pilih JPEG atau PNG file";
+                }
+
+                if ($file_size > 2097152) {
+                    $errors[] = 'File size must be excately 2 MB';
+                    $errMsg = "Gambar tidak boleh lebih dari 2 MB";
+                }
+
+                if (empty($errors) == true) {
+                    $file_name = $_POST['nip'] . "-" . $file_name;
+                    move_uploaded_file($file_tmp, "$this->base_url/assets/img/$file_name");
+                    array_push($value, $file_name);
+
+                    $cek = mysqli_num_rows($this->teacher->findTeacher($_POST['nip']));
+                    if ($cek > 0) {
+                        $errMsg = "Maaf, NIP sudah terdaftar";
+                    } else {
+//                print_r($value);
+                        $res = $this->teacher->create($value);
+                        if ($res == 1) {
+                            $this->redirect('index.php?&r=teacher');
+                        } else {
+                            $errMsg = $res;
+                        }
+                    }
                 }
             }
 
@@ -76,16 +106,46 @@ class TeacherController
     {
         $id = (isset($_GET['id']) ? $_GET['id'] : $_POST['id']);
         $data = mysqli_fetch_assoc($this->teacher->findTeacher($id));
+        $data['mode'] = "edit";
         if (isset($_POST['nip'])) {
-            $column = ['nama', 'jk', 'alamat', 'gelar', 'masa_bakti', 'level', 'quotes'];
+            $column = ['nama', 'jk', 'alamat', 'gelar', 'masa_bakti', 'level', 'quotes', 'foto'];
             $value = [$_POST['nama'], $_POST['jk'], $_POST['alamat'], $_POST['gelar'], $_POST['masa_bakti'], $_POST['jabatan'], $_POST['quotes']];
 
-            $res = $this->teacher->update($id, $column, $value);
-            if ($res == 1) {
-                $this->redirect('index.php?&r=teacher');
-            } else {
-                $errMsg = $res;
+            // image process
+            $img = $_FILES['foto'];
+            if (isset($_FILES['foto'])) {
+                $errors = array();
+                $file_name = $img['name'];
+                $file_size = $img['size'];
+                $file_tmp = $img['tmp_name'];
+                $file_type = $img['type'];
+                $file_ext = strtolower(end(explode('.', $img['name'])));
+
+                $expensions = array("jpeg", "jpg", "png");
+
+                if (in_array($file_ext, $expensions) === false) {
+                    $errors[] = "extension not allowed, please choose a JPEG or PNG file.";
+                    $errMsg = "Silihkan Pilih JPEG atau PNG file";
+                }
+
+                if ($file_size > 2097152) {
+                    $errors[] = 'File size must be excately 2 MB';
+                    $errMsg = "Gambar tidak boleh lebih dari 2 MB";
+                }
+
+                if (empty($errors) == true) {
+                    $file_name = $_POST['nip'] . "-" . $file_name;
+                    move_uploaded_file($file_tmp, "$this->base_url/assets/img/$file_name");
+                    array_push($value, $file_name);
+                    $res = $this->teacher->update($id, $column, $value);
+                    if ($res == 1) {
+                        $this->redirect('index.php?&r=teacher');
+                    } else {
+                        $errMsg = $res;
+                    }
+                }
             }
+
         }
 
 

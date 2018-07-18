@@ -15,8 +15,8 @@
                         <?= $errMsg ?>
                     </div>
                 <?php } ?>
-                <form role="form" action="<?= $formAction ?>" name="registration"
-                      method="post">
+                <form role="form" action="<?= $formAction ?>" name="registration" method="post"
+                      enctype="multipart/form-data">
                     <input type="hidden" name="id" value="<?= (isset($data['nip']) ? $data['nip'] : "") ?>">
                     <div class="box-body">
                         <div class="form-group">
@@ -67,12 +67,13 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Masa Bakti</label>
                             <input type="text" class="form-control" name="masa_bakti" placeholder="Masa Bakti"
+                                   onkeydown="validateNumber(event)"
                                    value="<?= (isset($data['masa_bakti']) ? $data['masa_bakti'] : "") ?>">
                         </div>
                         <div class="form-group">
                             <label>Quotes</label>
-                            <textarea class="form-control" rows="3" placeholder="Enter ..." name="quotes"
-                                      value="<?= (isset($data['quotes']) ? $data['quotes'] : "") ?>"></textarea>
+                            <textarea class="form-control" rows="3" placeholder="Enter ..."
+                                      name="quotes"><?= (isset($data['quotes']) ? $data['quotes'] : "") ?></textarea>
                         </div>
                         <div class="form-group">
                             <label>Jabatan</label>
@@ -85,11 +86,27 @@
                                 </option>
                             </select>
                         </div>
+                        <div class="timeline-item">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Foto Profil</label>
+                                <input type="file" class="form-control" name="foto" onchange="readURL(this)">
+                            </div>
+                            <div class="timeline-body">
+                                <?php if (isset($data['mode']) && $data['mode'] == 'edit') { ?>
+                                    <img src="<?php echo $base_url ?>assets/img/<?= $data['foto'] ?>" alt="..."
+                                         class="margin" id="preview"
+                                         style="width: 200px; 200px;">
+                                <?php } else { ?>
+                                    <img src="http://via.placeholder.com/200x200" alt="..." class="margin" id="preview"
+                                         style="">
+                                <?php } ?>
+                            </div>
+                        </div>
                     </div>
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" name="submitTeacher" class="btn btn-primary">Simpan</button>
                         <a href="<?php echo $base_url_index ?>&r=teacher" class="btn btn-default">Batal</a>
                     </div>
                 </form>
@@ -98,3 +115,31 @@
         <!-- /.box -->
     </div>
 </div>
+
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#preview').attr('src', e.target.result);
+                $('#preview').attr('style', "width: 200px; height: 200px");
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function validateNumber(e) {
+        if ($.inArray(e.keyCode, [8, 35, 36, 37, 38, 39, 40, 46]) !== -1 || e.ctrlKey === true ||
+            // Allow: home, end, left, right, down, up
+            (e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) {
+            // let it happen, don't do anything
+            return;
+        }
+        // Ensure that it is a number and stop the keypress
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+            e.preventDefault();
+        }
+    }
+</script>

@@ -30,7 +30,7 @@ class Front
     public function listBerita()
     {
         try {
-            $res = $this->general->selectOrder("news", "created_at ASC limit 6");
+            $res = $this->general->selectOrder("berita", "created_at ASC limit 5");
 
             return $res;
         } catch (Exception $e) {
