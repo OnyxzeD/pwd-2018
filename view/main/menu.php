@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="row text-center menu1">
-            <a class="col-md-2" href="<?php echo $base_url ?>">
+            <a class="col-md-2" href="<?php echo $base_url_index ?>r=front">
                 <div class="menu-div">
                     <h1 class="menu-text">Home</h1>
                 </div class="menu-div">
@@ -24,21 +24,21 @@
                 </div class="menu-div">
             </a>
             <a class="col-md-2" href="<?php echo $base_url_index ?>r=front&op=profil"">
-                <div class="menu-div">
-                    <h1 class="menu-text">Profil</h1>
-                </div class="menu-div">
+            <div class="menu-div">
+                <h1 class="menu-text">Profil</h1>
+            </div class="menu-div">
             </a>
             <a class="col-md-2" href="<?php echo $base_url_index ?>r=front&op=galeri"">
-                <div class="menu-div">
-                    <h1 class="menu-text">Galeri</h1>
-                </div>
+            <div class="menu-div">
+                <h1 class="menu-text">Galeri</h1>
+            </div>
             </a>
             <a class="col-md-2" href="<?php echo $base_url_index ?>r=login&op=login"">
-                <div class="menu-div">
-                    <h1 class="menu-text">
-                        <?= (isset($_SESSION['account']) ? $_SESSION['account']['username'] : "Login")?>
-                    </h1>
-                </div>
+            <div class="menu-div">
+                <h1 class="menu-text">
+                    <?= (isset($_SESSION['account']) ? $_SESSION['account']['username'] : "Login") ?>
+                </h1>
+            </div>
             </a>
             <div class="col-md-12"></div>
         </div>

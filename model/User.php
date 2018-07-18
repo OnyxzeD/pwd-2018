@@ -28,6 +28,19 @@ class User
         }
     }
 
+    public function findBy($condition)
+    {
+        try {
+            $res = $this->general->selectBy("user", "*", $condition);
+            $this->services->closeDb($this->conn);
+
+            return $res;
+        } catch (Exception $e) {
+            $this->services->closeDb($this->conn);
+            throw $e;
+        }
+    }
+
     public function get()
     {
         try {
@@ -46,7 +59,7 @@ class User
         try {
             $id = $this->general->generateId('id', 'user', 'US');
             array_unshift($value, $id);
-            $column = ['id', 'username', 'password', 'email', 'level', 'status'];
+            $column = ['id', 'username', 'password', 'email', 'level', 'status', 'foto'];
             $res = $this->general->insert('user', $column, $value);
 
             return $res;

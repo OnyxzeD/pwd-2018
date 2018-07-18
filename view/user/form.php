@@ -15,8 +15,8 @@
                         <?= $errMsg ?>
                     </div>
                 <?php } ?>
-                <form role="form" action="<?= $formAction ?>" name="registration"
-                      method="post">
+                <form role="form" action="<?= $formAction ?>" name="registration" method="post"
+                      enctype="multipart/form-data">
                     <input type="hidden" name="id" value="<?= (isset($data['id']) ? $data['id'] : "") ?>">
                     <div class="box-body">
                         <div class="form-group">
@@ -24,13 +24,7 @@
                             <input type="email" class="form-control" name="email" placeholder="Enter email"
                                    value="<?= (isset($data['email']) ? $data['email'] : "") ?>">
                         </div>
-                        <?php if (!isset($data['id'])) { ?>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" name="password"
-                                       placeholder="Password">
-                            </div>
-                        <?php } else { ?>
+                        <?php if (isset($data['mode']) && $data['mode'] == 'edit') { ?>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Password Lama</label>
                                 <input type="password" class="form-control" name="passwordLama"
@@ -39,6 +33,12 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Password Baru</label>
                                 <input type="password" class="form-control" name="passwordBaru"
+                                       placeholder="Password">
+                            </div>
+                        <?php } else { ?>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" name="password"
                                        placeholder="Password">
                             </div>
                         <?php } ?>
@@ -72,11 +72,22 @@
                                 </div>
                             </div>
                         </div>
-                        <!--                        <div class="checkbox">-->
-                        <!--                            <label>-->
-                        <!--                                <input type="checkbox"> Check me out-->
-                        <!--                            </label>-->
-                        <!--                        </div>-->
+                        <div class="timeline-item">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Foto Profil</label>
+                                <input type="file" class="form-control" name="foto" onchange="readURL(this)">
+                            </div>
+                            <div class="timeline-body">
+                                <?php if (isset($data['mode']) && $data['mode'] == 'edit') { ?>
+                                    <img src="<?php echo $base_url ?>assets/img/<?= $data['foto'] ?>" alt="..."
+                                         class="margin" id="preview"
+                                         style="width: 200px; 200px;">
+                                <?php } else { ?>
+                                    <img src="http://via.placeholder.com/200x200" alt="..." class="margin" id="preview"
+                                         style="">
+                                <?php } ?>
+                            </div>
+                        </div>
                     </div>
                     <!-- /.box-body -->
 

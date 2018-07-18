@@ -115,31 +115,3 @@
         <!-- /.box -->
     </div>
 </div>
-
-<script>
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#preview').attr('src', e.target.result);
-                $('#preview').attr('style', "width: 200px; height: 200px");
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    function validateNumber(e) {
-        if ($.inArray(e.keyCode, [8, 35, 36, 37, 38, 39, 40, 46]) !== -1 || e.ctrlKey === true ||
-            // Allow: home, end, left, right, down, up
-            (e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) {
-            // let it happen, don't do anything
-            return;
-        }
-        // Ensure that it is a number and stop the keypress
-        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-            e.preventDefault();
-        }
-    }
-</script>
