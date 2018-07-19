@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6acdb637-0825-41f3-939c-910d9ac69aa4" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/controller/CategoriesController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/controller/ReporterController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/view/news/view.php" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/AdminLTE-2.4.3/bower_components/select2/dist/css/select2.css" afterPath="$PROJECT_DIR$/assets/AdminLTE-2.4.3/bower_components/select2/dist/css/select2.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/NewsController.php" afterPath="$PROJECT_DIR$/controller/NewsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/News.php" afterPath="$PROJECT_DIR$/model/News.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/main/berita.php" afterPath="$PROJECT_DIR$/view/main/berita.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/main/menu.php" afterPath="$PROJECT_DIR$/view/main/menu.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/news/form.php" afterPath="$PROJECT_DIR$/view/news/form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/news/index.php" afterPath="$PROJECT_DIR$/view/news/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/template/footer.php" afterPath="$PROJECT_DIR$/view/template/footer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/template/layout.php" afterPath="$PROJECT_DIR$/view/template/layout.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crud.sql" afterPath="$PROJECT_DIR$/crud.sql" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -50,8 +38,8 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/view/news/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="46" column="98" lean-forward="true" selection-start-line="46" selection-start-column="98" selection-end-line="46" selection-end-column="98" />
+            <state relative-caret-position="172">
+              <caret line="44" column="44" lean-forward="true" selection-start-line="44" selection-start-column="44" selection-end-line="44" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -542,7 +530,7 @@
       <workItem from="1531884964230" duration="3372000" />
       <workItem from="1531904130735" duration="1373000" />
       <workItem from="1531935556888" duration="10077000" />
-      <workItem from="1531950294743" duration="13526000" />
+      <workItem from="1531950294743" duration="13623000" />
     </task>
     <task id="LOCAL-00001" summary="make crud user">
       <created>1531813164195</created>
@@ -635,11 +623,18 @@
       <option name="project" value="LOCAL" />
       <updated>1531959183135</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="make crd news">
+      <created>1531966337355</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1531966337355</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66289000" />
+    <option name="totallyTimeSpent" value="66386000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -683,7 +678,8 @@
     <MESSAGE value="teacher's photo processing" />
     <MESSAGE value="user's photo processing" />
     <MESSAGE value="update import student csv" />
-    <option name="LAST_COMMIT_MESSAGE" value="update import student csv" />
+    <MESSAGE value="make crd news" />
+    <option name="LAST_COMMIT_MESSAGE" value="make crd news" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1120,8 +1116,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/view/news/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="46" column="98" lean-forward="true" selection-start-line="46" selection-start-column="98" selection-end-line="46" selection-end-column="98" />
+        <state relative-caret-position="172">
+          <caret line="44" column="44" lean-forward="true" selection-start-line="44" selection-start-column="44" selection-end-line="44" selection-end-column="44" />
           <folding />
         </state>
       </provider>
