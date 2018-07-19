@@ -1,14 +1,19 @@
 <?php
 
 require_once 'model/Student.php';
+require_once 'model/Services.php';
 
 class StudentController
 {
 
     private $student = NULL;
+    private $services = NULL;
+    private $conn;
 
     public function __construct()
     {
+        $this->services = new Services();
+        $this->conn = $this->services->openDb();
         $this->student = new Student();
     }
 
@@ -25,8 +30,12 @@ class StudentController
                 $this->lists();
             } elseif ($op == 'create') {
                 $this->save();
+            } elseif ($op == 'display') {
+                $this->displayImport();
             } elseif ($op == 'import') {
                 $this->formImport();
+            } elseif ($op == 'save-import') {
+                $this->Import();
             } elseif ($op == 'update') {
                 $this->update();
             } elseif ($op == 'delete') {
@@ -80,6 +89,53 @@ class StudentController
             $filename = $_FILES["file"]["tmp_name"];
             if ($_FILES["file"]["size"] > 0) {
                 $file = fopen($filename, "r");
+                $data = [];
+                while (($getData = fgetcsv($file, 10000, ",")) !== FALSE) {
+                    $value = [$getData[0], $getData[1], $getData[2], $this->convertDate($getData[3], 'indo'), $getData[4], $getData[5], $getData[6], $getData[7]];
+                    $cek = mysqli_num_rows($this->student->findStudent($getData[0]));
+                    if ($cek <= 0) {
+                        array_push($data, $value);
+                    }
+                }
+
+                fclose($file);
+            }
+        }
+
+        $content = 'view/student/upload.php';
+        $header = 'Siswa';
+        $ttl = 'Import Siswa';
+        include 'view/template/layout.php';
+    }
+
+    public function Import()
+    {
+        echo $_POST['total'] . "<br>";
+        echo $_POST['mencoba'] . "<br>";
+        $sql = "INSERT into siswa VALUES ";
+        for ($total = 1; $total < $_POST['total']; $total++) {
+            if (($total + 1) == $_POST['total']) {
+                $sql .= "('" . $_POST['nis' . $total] . "','" . $_POST['nama' . $total] . "','" . $_POST['jk' . $total] . "','" . $this->convertDate($_POST['tgl_lahir' . $total], 'db') . "','" . $_POST['alamat' . $total] . "','" . $_POST['nama_ortu' . $total] . "','" . $_POST['telp_ortu' . $total] . "','" . $_POST['status' . $total] . "');";
+            } else {
+                $sql .= "('" . $_POST['nis' . $total] . "','" . $_POST['nama' . $total] . "','" . $_POST['jk' . $total] . "','" . $this->convertDate($_POST['tgl_lahir' . $total], 'db') . "','" . $_POST['alamat' . $total] . "','" . $_POST['nama_ortu' . $total] . "','" . $_POST['telp_ortu' . $total] . "','" . $_POST['status' . $total] . "'),";
+            }
+        }
+
+        if (mysqli_query($this->conn, $sql)) {
+            $this->redirect('index.php?&r=student');
+        } else {
+            echo mysqli_error($this->conn);
+        }
+
+        mysqli_close($this->conn);
+    }
+
+    public function displayImport()
+    {
+        if (isset($_POST['import'])) {
+            $filename = $_FILES["file"]["tmp_name"];
+            if ($_FILES["file"]["size"] > 0) {
+                $file = fopen($filename, "r");
                 while (($getData = fgetcsv($file, 10000, ",")) !== FALSE) {
                     $value = [$getData[0], $getData[1], $getData[2], $getData[3], $getData[4], $getData[5], $getData[6], $getData[7]];
                     $cek = mysqli_num_rows($this->student->findStudent($getData[0]));
@@ -94,10 +150,8 @@ class StudentController
             $this->redirect('index.php?&r=student');
         }
 
-        $content = 'view/student/upload.php';
-        $header = 'Siswa';
-        $ttl = 'Import Siswa';
-        include 'view/template/layout.php';
+        $content = 'view/student/display.php';
+        include 'view/student/display.php';
     }
 
     public function update()
@@ -139,16 +193,19 @@ class StudentController
 
     public function convertDate($data, $format)
     {
-        if ($data == '-' || $data == null || $data == '') {
+        if ($data == '-' || $data == null || $data == ' ') {
             return "-";
         }
 
         if ($format == 'indo') {
-            $dt = explode(" ", $data);
-            $date = explode("-", $dt[0]);
+            $date = explode("-", $data);
             $bulan = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-            $converted = $date[2] . " " . $bulan[(int)($date[1]) - 1] . " " . $date[0];
+            if (isset($date[2]) && isset($date[1]) && isset($date[0])) {
+                $converted = $date[2] . " " . $bulan[(int)($date[1]) - 1] . " " . $date[0];
+            } else {
+                $converted = "-";
+            }
         } else if ($format == 'db') {
             // convert input format to YYYY-mm-dd
             $date = explode(" ", $data);
