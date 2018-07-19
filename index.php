@@ -6,6 +6,7 @@ require_once 'controller/NewsController.php';
 require_once 'controller/BannerController.php';
 require_once 'controller/StudentController.php';
 require_once 'controller/TeacherController.php';
+require_once 'controller/GalleryController.php';
 require_once 'controller/UserController.php';
 require_once 'controller/LoginController.php';
 
@@ -40,6 +41,9 @@ try {
             $controller->handleRequest();
         } elseif ($op == 'teacher') {
             $controller = new TeacherController();
+            $controller->handleRequest();
+        } elseif ($op == 'gallery') {
+            $controller = new GalleryController();
             $controller->handleRequest();
         } elseif ($op == 'user') {
             $controller = new UserController();

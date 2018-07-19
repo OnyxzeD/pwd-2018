@@ -38,11 +38,14 @@ class HomeController
             } elseif ($op == 'show') {
                 $this->show();
             } else {
-                $this->showError("Page not found", "Page for operation " . $op . " was not found!");
+//                $this->showError("Page not found", "Page for operation " . $op . " was not found!");
+                $this->redirect('index.php');
             }
         } catch (Exception $e) {
             // some unknown Exception got through here, use application error page to display it
-            $this->showError("Application error", $e->getMessage());
+//            $this->showError("Application error", $e->getMessage());
+            $this->redirect('index.php');
+
         }
     }
 

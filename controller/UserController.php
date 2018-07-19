@@ -31,11 +31,13 @@ class UserController
             } elseif ($op == 'delete') {
                 $this->delete();
             } else {
-                $this->showError("Page not found", "Page for operation " . $op . " was not found!");
+//                $this->showError("Page not found", "Page for operation " . $op . " was not found!");
+                $this->redirect('index.php?&r=user');
             }
         } catch (Exception $e) {
             // some unknown Exception got through here, use application error page to display it
-            $this->showError("Application error", $e->getMessage());
+//            $this->showError("Application error", $e->getMessage());
+            $this->redirect('index.php?&r=user');
         }
     }
 
@@ -76,7 +78,6 @@ class UserController
                 if (empty($errors) == true) {
                     $name = explode("@", $_POST['email']);
                     $file_name = $name[0] . "-" . $file_name;
-                    move_uploaded_file($file_tmp, "$this->base_url/assets/img/$file_name");
                     array_push($value, $file_name);
 
                     $cek = mysqli_num_rows($this->user->findBy("email = '" . $_POST['email'] . "'"));
@@ -85,6 +86,7 @@ class UserController
                     } else {
                         $res = $this->user->create($value);
                         if ($res == 1) {
+                            move_uploaded_file($file_tmp, "$this->base_url/assets/img/$file_name");
                             $this->redirect('index.php?&r=user');
                         } else {
                             $errMsg = $res;
@@ -110,7 +112,7 @@ class UserController
         if (isset($_POST['id'])) {
             if (($_POST['passwordLama'] != null) && ($_POST['passwordBaru'] != null)) {
                 if (md5($_POST['passwordLama']) == $data['password']) {
-                    $column = ['username', 'password', 'email', 'status', 'foto'];
+                    $column = ['username', 'password', 'email', 'status'];
                     $value = [$_POST['username'], md5($_POST['password']), $_POST['email'], $_POST['status']];
                 } else {
                     $errMsg = "Password Lama Salah";
@@ -118,7 +120,7 @@ class UserController
             }
 
             if (($_POST['email'] != null) && ($_POST['username']) != null) {
-                $column = ['username', 'email', 'status', 'foto'];
+                $column = ['username', 'email', 'status'];
                 $value = [$_POST['username'], $_POST['email'], $_POST['status']];
             }
             // img process
@@ -146,16 +148,17 @@ class UserController
                 if (empty($errors) == true) {
                     $name = explode("@", $_POST['email']);
                     $file_name = $name[0] . "-" . $file_name;
-                    move_uploaded_file($file_tmp, "$this->base_url/assets/img/$file_name");
+                    array_push($column, 'foto');
                     array_push($value, $file_name);
-
-                    $res = $this->user->update($id, $column, $value);
-                    if ($res == 1) {
-                        $this->redirect('index.php?&r=user');
-                    } else {
-                        $errMsg = $res;
-                    }
+                    move_uploaded_file($file_tmp, "$this->base_url/assets/img/$file_name");
                 }
+            }
+
+            $res = $this->user->update($id, $column, $value);
+            if ($res == 1) {
+                $this->redirect('index.php?&r=user');
+            } else {
+                $errMsg = $res;
             }
         }
 

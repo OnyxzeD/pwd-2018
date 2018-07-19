@@ -18,11 +18,6 @@
             </a>
         </li>
         <li>
-            <a href="<?php echo $base_url_index ?>&r=banner">
-                <i class="fa fa-newspaper-o"></i> <span>Banner</span>
-            </a>
-        </li>
-        <li>
             <a href="<?php echo $base_url_index ?>&r=student">
                 <i class="fa fa-user"></i> <span>Siswa</span>
             </a>
@@ -32,13 +27,8 @@
                 <i class="fa fa-users"></i> <span>Guru</span>
             </a>
         </li>
-<!--        <li>-->
-<!--            <a href="--><?php //echo $base_url_index ?><!--&r=news">-->
-<!--                <i class="fa fa-pencil-square-o"></i> <span>Profile</span>-->
-<!--            </a>-->
-<!--        </li>-->
         <li>
-            <a href="<?php echo $base_url_index ?>&r=news">
+            <a href="<?php echo $base_url_index ?>&r=gallery">
                 <i class="fa fa-picture-o"></i> <span>Galeri</span>
             </a>
         </li>
