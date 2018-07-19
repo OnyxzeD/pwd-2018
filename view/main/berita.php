@@ -24,24 +24,25 @@ $base_url_index = 'http://localhost/CRUD-NATIVE/index.php?';
     </div>
 </div>
 <?php
-while ($berita = mysqli_fetch_assoc($data)) {?>
+while ($berita = mysqli_fetch_assoc($data)) { ?>
     <div class="py-3">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-5 order-2 order-md-1">
-                <img class="img-fluid d-block" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg"></div>
-            <div class="col-md-7 order-1 order-md-2">
-                <h3><?php echo $berita['title'];?></h3>
-                <p class="my-3"><?php echo $berita['content'];?></p>
-                <p class="my-3"><?php echo $berita['created_at'];?></p>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 order-2 order-md-1">
+                    <img class="img-fluid d-block" style="width: 445px; height: 335px"
+                         src="<?php echo $base_url ?>assets/img/<?= $berita['thumbnail'] ?>"
+                         onerror="this.src='<?php echo $base_url ?>assets/img/unknown-news.jpg'">
+                </div>
+                <div class="col-md-7 order-1 order-md-2">
+                    <h3><?php echo $berita['judul']; ?></h3>
+                    <p class="my-3"><?php echo $berita['isi']; ?></p>
+                    <p class="my-3"><?= convertDate($berita['created_at'], 'indo') ?></p>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<?php
-}
+<?php } ?>
 
-?>
 <script src="<?php echo $base_url ?>assets/js/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

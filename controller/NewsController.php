@@ -1,17 +1,20 @@
 <?php
 
 require_once 'model/News.php';
+require_once 'model/Services.php';
 
 class NewsController
 {
 
     private $news = NULL;
-    private $reporter = NULL;
-    private $categories = NULL;
-    private $newsCategories = NULL;
+    private $base_url = 'D:/xampp/htdocs/CRUD-NATIVE';
+    private $services = NULL;
+    private $conn;
 
     public function __construct()
     {
+        $this->services = new Services();
+        $this->conn = $this->services->openDb();
         $this->news = new News();
     }
 
@@ -32,111 +35,141 @@ class NewsController
                 $this->update();
             } elseif ($op == 'delete') {
                 $this->delete();
-            } elseif ($op == 'show') {
-                $this->show();
+            } elseif ($op == 'read') {
+                $this->read();
             } else {
-                $this->showError("Page not found", "Page for operation " . $op . " was not found!");
+                $this->redirect('index.php?&r=news');
             }
         } catch (Exception $e) {
             // some unknown Exception got through here, use application error page to display it
-            $this->showError("Application error", $e->getMessage());
+            $this->redirect('index.php?&r=news');
         }
     }
 
     public function lists()
     {
-        $orderby = isset($_GET['orderby']) ? $_GET['orderby'] : 'id';
-        $news = $this->news->getAllNews($orderby);
+
+        $sql = "SELECT b.*, u.username FROM berita b, user u WHERE b.penulis = u.id";
+        $data = mysqli_query($this->conn, $sql);
         $content = 'view/news/index.php';
+        $header = 'Berita';
+        mysqli_close($this->conn);
         include 'view/template/layout.php';
     }
 
     public function save()
     {
-
-        $title = 'Add new News';
-        $author = '';
-        $content = '';
-        $orderby = isset($_GET['orderby']) ? $_GET['orderby'] : 'id';
-        $listReporter = $this->reporter->getAllReporter($orderby);
-        $listCategory = $this->categories->getAllCategories($orderby);
-        $ct_id = '';
-        $errors = array();
-
-        if (isset($_POST['form-submitted'])) {
-
-            $author = isset($_POST['author']) ? $_POST['author'] : NULL;
-            $title = isset($_POST['title']) ? $_POST['title'] : NULL;
-            $content = isset($_POST['content']) ? $_POST['content'] : NULL;
-            $cat = isset($_POST['cat']) ? $_POST['cat'] : NULL;
-
-            try {
-                $test = $this->news->createNewNews($author, $title, $content, $cat);
-                $this->redirect('index.php?&r=news');
-
-                return;
-            } catch (ValidationException $e) {
-                $errors = $e->getErrors();
+        if (isset($_POST['judul'])) {
+            $data = $_POST;
+            $tags = "";
+            for ($i = 0; $i < count($_POST['tags']); $i++) {
+                if (($i + 1) == count($_POST['tags'])) {
+                    $tags .= $_POST['tags'][$i];
+                } else {
+                    $tags .= $_POST['tags'][$i] . ",";
+                }
             }
+            $value = [$_POST['judul'], $_POST['isi'], $tags];
+            $img = $_FILES['foto'];
+            if (isset($_FILES['foto'])) {
+                $errors = array();
+                $file_name = $img['name'];
+                $file_size = $img['size'];
+                $file_tmp = $img['tmp_name'];
+                $file_type = $img['type'];
+                $file_ext = strtolower(end(explode('.', $img['name'])));
+
+                $expensions = array("jpeg", "jpg", "png");
+
+                if (in_array($file_ext, $expensions) === false) {
+                    $errors[] = "extension not allowed, please choose a JPEG or PNG file.";
+                    $errMsg = "Silihkan Pilih JPEG atau PNG file";
+                }
+
+                if ($file_size > 2097152) {
+                    $errors[] = 'File size must be excately 2 MB';
+                    $errMsg = "Gambar tidak boleh lebih dari 2 MB";
+                }
+
+                if (empty($errors) == true) {
+                    $name = explode(" ", $_POST['judul']);
+                    $file_name = $name[0] . "-" . date('Y-m-d') . $file_name;
+                    move_uploaded_file($file_tmp, "$this->base_url/assets/img/$file_name");
+                    array_push($value, $file_name);
+                    array_push($value, $_SESSION['account']['id']);
+                    array_push($value, date('Y-m-d H:i:s'));
+
+//                    print_r($value);
+                    $res = $this->news->create($value);
+                    if ($res == 1) {
+                        $this->redirect('index.php?&r=news');
+                    } else {
+                        $errMsg = $res;
+                    }
+                }
+            }
+
         }
 
-        include 'view/news/form.php';
+        $content = 'view/news/form.php';
+        $header = 'Berita';
+        $ttl = 'Berita Guru';
+        $formAction = 'http://localhost/CRUD-NATIVE/index.php?r=news&op=create';
+        include 'view/template/layout.php';
     }
 
     public function update()
     {
+        $id = (isset($_GET['id']) ? $_GET['id'] : $_POST['id']);
+        $data = mysqli_fetch_assoc($this->news->findTeacher($id));
+        $data['mode'] = "edit";
+        if (isset($_POST['nip'])) {
+            $column = ['nama', 'jk', 'alamat', 'gelar', 'masa_bakti', 'level', 'quotes', 'foto'];
+            $value = [$_POST['nama'], $_POST['jk'], $_POST['alamat'], $_POST['gelar'], $_POST['masa_bakti'], $_POST['jabatan'], $_POST['quotes']];
 
-        $orderby = isset($_GET['orderby']) ? $_GET['orderby'] : 'id';
-        $listReporter = $this->reporter->getAllReporter($orderby);
-        $listCategory = $this->categories->getAllCategories($orderby);
-        $title = 'Update Category';
-        $name = '';
-        $id = isset($_GET['id']) ? $_GET['id'] : NULL;;
-        $errors = array();
-        if (!$id) {
-            throw new Exception('Internal error.');
-        }
+            // image process
+            $img = $_FILES['foto'];
+            if (isset($_FILES['foto'])) {
+                $errors = array();
+                $file_name = $img['name'];
+                $file_size = $img['size'];
+                $file_tmp = $img['tmp_name'];
+                $file_type = $img['type'];
+                $file_ext = strtolower(end(explode('.', $img['name'])));
 
-        //get singgle data
-        $ne = $this->news->getNewsById($id);
-        if (empty($ne)) {
-            throw new Exception('ID NOT FOUND.');
-        }
+                $expensions = array("jpeg", "jpg", "png");
 
-        $ct = $this->newsCategories->getNewsCatByNewsId($ne->id);
-        if (empty($ct)) {
-            throw new Exception('Cat ID NOT FOUND.');
-        }
+                if (in_array($file_ext, $expensions) === false) {
+                    $errors[] = "extension not allowed, please choose a JPEG or PNG file.";
+                    $errMsg = "Silihkan Pilih JPEG atau PNG file";
+                }
 
-        //set value
-        $title = $ne->title;
-        $author = $ne->author_id;
-        $content = $ne->content;
-        $ct_id = $ct->cat_id;
+                if ($file_size > 2097152) {
+                    $errors[] = 'File size must be excately 2 MB';
+                    $errMsg = "Gambar tidak boleh lebih dari 2 MB";
+                }
 
-
-        if (isset($_POST['form-submitted'])) {
-
-            $author = isset($_POST['author']) ? $_POST['author'] : NULL;
-            $title = isset($_POST['title']) ? $_POST['title'] : NULL;
-            $content = isset($_POST['content']) ? $_POST['content'] : NULL;
-            $cat = isset($_POST['cat']) ? $_POST['cat'] : NULL;
-            $id = isset($_POST['id']) ? $_POST['id'] : NULL;
-            if (!$id) {
-                throw new Exception('Internal error.');
+                if (empty($errors) == true) {
+                    $file_name = $_POST['nip'] . "-" . $file_name;
+                    move_uploaded_file($file_tmp, "$this->base_url/assets/img/$file_name");
+                    array_push($value, $file_name);
+                    $res = $this->news->update($id, $column, $value);
+                    if ($res == 1) {
+                        $this->redirect('index.php?&r=news');
+                    } else {
+                        $errMsg = $res;
+                    }
+                }
             }
 
-            try {
-                $this->news->updateNews($id, $author, $title, $content, $cat);
-                $this->redirect('index.php?&r=news');
-
-                return;
-            } catch (ValidationException $e) {
-                $errors = $e->getErrors();
-            }
         }
 
-        include 'view/news/form.php';
+
+        $content = 'view/news/form.php';
+        $header = 'Guru';
+        $ttl = 'Ubah Guru';
+        $formAction = 'http://localhost/CRUD-NATIVE/index.php?&r=news&op=update';
+        include 'view/template/layout.php';
     }
 
     public function delete()
@@ -151,22 +184,14 @@ class NewsController
         $this->redirect('index.php?&r=news');
     }
 
-    public function show()
+    public function read()
     {
         $id = isset($_GET['id']) ? $_GET['id'] : NULL;
-        if (!$id) {
-            throw new Exception('Internal error.');
-        }
-        $news = $this->news->getNewsById($id);
 
-        include 'view/news/view.php';
+        $this->news->addCounter($id);
+
+        $this->redirect('index.php?&r=news');
     }
-
-    public function showError($title, $message)
-    {
-        include 'view/error.php';
-    }
-
 }
 
 ?>

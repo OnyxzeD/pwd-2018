@@ -45,9 +45,17 @@
 <script src="<?php echo $base_url ?>assets/AdminLTE-2.4.3/dist/js/demo.js"></script>
 <!-- Custom Js config -->
 <script src="<?php echo $base_url ?>assets/js/app.js"></script>
-
+<!--Wysiwyg-->
+<script src="<?php echo $base_url ?>assets/AdminLTE-2.4.3/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<!-- Select2 -->
+<script src="<?php echo $base_url ?>assets/AdminLTE-2.4.3/bower_components/select2/dist/js/select2.full.min.js"></script>
 <script>
     $(function () {
+        //Initialize Select2 Elements
+        $('.select2').select2();
+
+        $('.wysiwyg').wysihtml5();
+
         $('#datepicker').datepicker({
             autoclose: true,
             format: "dd MM yyyy"

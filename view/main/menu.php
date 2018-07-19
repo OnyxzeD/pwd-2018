@@ -23,22 +23,27 @@
                     <h1 class="menu-text">Berita</h1>
                 </div class="menu-div">
             </a>
-            <a class="col-md-2" href="<?php echo $base_url_index ?>r=front&op=profil"">
-            <div class="menu-div">
-                <h1 class="menu-text">Profil</h1>
-            </div class="menu-div">
+            <a class="col-md-2" href="<?php echo $base_url_index ?>r=front&op=profil">
+                <div class="menu-div">
+                    <h1 class="menu-text">Profil</h1>
+                </div class="menu-div">
             </a>
-            <a class="col-md-2" href="<?php echo $base_url_index ?>r=front&op=galeri"">
-            <div class="menu-div">
-                <h1 class="menu-text">Galeri</h1>
-            </div>
+            <a class="col-md-2" href="<?php echo $base_url_index ?>r=front&op=galeri">
+                <div class="menu-div">
+                    <h1 class="menu-text">Galeri</h1>
+                </div>
             </a>
-            <a class="col-md-2" href="<?php echo $base_url_index ?>r=login&op=login"">
-            <div class="menu-div">
-                <h1 class="menu-text">
-                    <?= (isset($_SESSION['account']) ? $_SESSION['account']['username'] : "Login") ?>
-                </h1>
-            </div>
+            <a class="col-md-2" href="<?php echo $base_url_index ?>r=login&op=login">
+                <div class="menu-div">
+                    <h1 class="menu-text">
+                        <?php
+                        if (isset($_SESSION['account'])) {
+                            $name = explode(" ", $_SESSION['account']['username']);
+                        }
+                        ?>
+                        <?= (isset($_SESSION['account']) ? $name[0] : "Login") ?>
+                    </h1>
+                </div>
             </a>
             <div class="col-md-12"></div>
         </div>

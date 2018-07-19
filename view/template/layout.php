@@ -35,6 +35,9 @@ $base_url_index = 'http://localhost/CRUD-NATIVE/index.php?';
     <!-- Daterange picker -->
     <link rel="stylesheet"
           href="<?php echo $base_url ?>assets/AdminLTE-2.4.3/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+    <!-- Select2 -->
+    <link rel="stylesheet"
+          href="<?php echo $base_url ?>assets/AdminLTE-2.4.3/bower_components/select2/dist/css/select2.css">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet"
           href="<?php echo $base_url ?>assets/AdminLTE-2.4.3/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
