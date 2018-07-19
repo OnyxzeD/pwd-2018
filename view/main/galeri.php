@@ -19,10 +19,12 @@ $base_url_index = 'http://localhost/CRUD-NATIVE/index.php?';
     <div class="container" style="margin-top: 15px;">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="mb-4 text-white">Galeri</h1>
+                <h1 class="mb-4" style="font-weight:1000;">Galeri</h1>
             </div>
         </div>
+                    <hr width="100%" style="height:7px;border:none;color:#333;background-color:#333;">
         <div class="row">
+
             <div class="col-md-3 col-6 p-1">
                 <a href="#">
                     <img class="d-block img-fluid"

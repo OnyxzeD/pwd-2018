@@ -26,7 +26,7 @@ $base_url_index = 'http://localhost/CRUD-NATIVE/index.php?';
                     <hr width="100%" style="height:7px;border:none;color:#333;background-color:#333;">
 
           <p class="my-3 news-content"><?php echo $berita['isi'];?></p>
-                <p class="my-3" style="font-decoration:underlined;">Dibuat pada <?php echo $berita['created_at'];?></p>
+                <p class="my-3" style="text-decoration:underline;">Dibuat pada <?php echo $berita['created_at'];?></p>
         </div>
       </div>
     </div>
