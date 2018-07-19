@@ -24,105 +24,19 @@ $base_url_index = 'http://localhost/CRUD-NATIVE/index.php?';
         </div>
                     <hr width="100%" style="height:7px;border:none;color:#333;background-color:#333;">
         <div class="row">
-
-            <div class="col-md-3 col-6 p-1">
-                <a href="#">
-                    <img class="d-block img-fluid"
-                         src="https://pingendo.github.io/templates/sections/assets/gallery_1.jpg"> </a>
-            </div>
-            <div class="col-md-3 col-6 p-1">
-                <a href="#">
-                    <img class="d-block img-fluid"
-                         src="https://pingendo.github.io/templates/sections/assets/gallery_5.jpg"> </a>
-            </div>
-            <div class="col-md-3 col-6 p-1">
-                <a href="#">
-                    <img class="d-block img-fluid"
-                         src="https://pingendo.github.io/templates/sections/assets/gallery_3.jpg"> </a>
-            </div>
-            <div class="col-md-3 col-6 p-1">
-                <a href="#">
-                    <img class="d-block img-fluid"
-                         src="https://pingendo.github.io/templates/sections/assets/gallery_4.jpg"> </a>
+    <?php while ($galeri = mysqli_fetch_assoc($data)) { ?>
+            <div class="col-md-3 col-6 p-1 galeri-cover">
+                <a target="blank" href="<?php echo $base_url ?>/assets/img/<?php echo $galeri['path'];?>">
+                    <img class="d-block img-fluid galeri-img"
+                         src="<?php echo $base_url ?>/assets/img/<?php echo $galeri['path'];?>"> </a>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-3 col-6 p-1">
-                <a href="#">
-                    <img class="d-block img-fluid"
-                         src="https://pingendo.github.io/templates/sections/assets/gallery_6.jpg"> </a>
-            </div>
-            <div class="col-md-3 col-6 p-1">
-                <a href="#">
-                    <img class="d-block img-fluid"
-                         src="https://pingendo.github.io/templates/sections/assets/gallery_7.jpg"> </a>
-            </div>
-            <div class="col-md-3 col-6 p-1">
-                <a href="#">
-                    <img class="d-block img-fluid"
-                         src="https://pingendo.github.io/templates/sections/assets/gallery_8.jpg"> </a>
-            </div>
-            <div class="col-md-3 col-6 p-1">
-                <a href="#">
-                    <img class="d-block img-fluid"
-                         src="https://pingendo.github.io/templates/sections/assets/gallery_9.jpg"> </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-6 p-1">
-                <a href="#">
-                    <img class="d-block img-fluid"
-                         src="https://pingendo.github.io/templates/sections/assets/gallery_10.jpg"> </a>
-            </div>
-            <div class="col-md-3 col-6 p-1">
-                <a href="#">
-                    <img class="d-block img-fluid"
-                         src="https://pingendo.github.io/templates/sections/assets/gallery_11.jpg"> </a>
-            </div>
-            <div class="col-md-3 col-6 p-1">
-                <a href="#">
-                    <img class="d-block img-fluid"
-                         src="https://pingendo.github.io/templates/sections/assets/gallery_12.jpg"> </a>
-            </div>
-            <div class="col-md-3 col-6 p-1">
-                <a href="#">
-                    <img class="d-block img-fluid"
-                         src="https://pingendo.github.io/templates/sections/assets/gallery_13.jpg"> </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-6 p-1">
-                <a href="#">
-                    <img class="d-block img-fluid"
-                         src="https://pingendo.github.io/templates/sections/assets/gallery_15.jpg"> </a>
-            </div>
-            <div class="col-md-3 col-6 p-1">
-                <a href="#">
-                    <img class="d-block img-fluid"
-                         src="https://pingendo.github.io/templates/sections/assets/gallery_2.jpg"> </a>
-            </div>
-            <div class="col-md-3 col-6 p-1">
-                <a href="#">
-                    <img class="d-block img-fluid"
-                         src="https://pingendo.github.io/templates/sections/assets/gallery_14.jpg"> </a>
-            </div>
-            <div class="col-md-3 col-6 p-1">
-                <a href="#">
-                    <img class="d-block img-fluid"
-                         src="https://pingendo.github.io/templates/sections/assets/gallery_16.jpg"> </a>
-            </div>
-        </div>
+        <?php } ?>
     </div>
 </div>
-<script src="<?php echo $base_url ?>assets/js/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="<?php echo $base_url ?>assets/css/js/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="<?php echo $base_url ?>assets/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+<script src="<?php echo $base_url ?>assets/js/jquery-3.2.1.slim.min.js"></script>
+<script src="<?php echo $base_url ?>assets/css/js/popper.min.js"></script>
+<script src="<?php echo $base_url ?>assets/js/bootstrap.min.js"></script>
 </body>
 
 </html>

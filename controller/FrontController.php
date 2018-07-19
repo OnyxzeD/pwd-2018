@@ -71,6 +71,7 @@ class FrontController
 
     public function gallery()
     {
+        $data = $this->front->listGaleri();
         include 'view/main/galeri.php';
     }
 

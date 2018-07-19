@@ -52,23 +52,7 @@
 <div class="modal" id="login-modal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title">Login form</h1>
-                <button type="button" class="close" data-dismiss="modal">
-                    <span>×</span>
-                </button>
-            </div>
-            <div class="card-body">
-                <form action="https://formspree.io/YOUREMAILHERE">
-                    <div class="form-group">
-                        <label>Email address</label>
-                        <input type="email" class="form-control" placeholder="Enter email"></div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" class="form-control" placeholder="Password"></div>
-                    <button type="submit" class="btn btn-secondary" data-toggle="modal">Login</button>
-                </form>
-            </div>
+            
         </div>
     </div>
 </div>

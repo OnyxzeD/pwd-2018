@@ -77,7 +77,7 @@ h1.text-white{
   box-shadow: 13px 13px 10px #808080;
   color: #ffffff !important; 
   background-color: #612020;
-  transition: 0.3s ease-in-out;
+  transition: 0.5s ease-in-out;
 }
 .menu1 a:hover{
   text-decoration: none;
@@ -90,4 +90,29 @@ h1.text-white{
 
 .menu-text{
   color: #612020;
+}
+
+.news-image:hover{
+
+}
+
+.galeri-cover{
+  
+}
+
+.galeri-img{
+  height: 180px !important;
+  width: 270px !important;
+  border:5px solid #ffffff;
+  border-radius: 10px;
+}
+
+.galeri-cover:hover{
+  
+}
+
+.galeri-img:hover{
+  border:5px solid #f35353;
+  border-radius: 30px;
+  transition: 0.3s ease-in-out;
 }

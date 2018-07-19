@@ -54,6 +54,18 @@ class Front
         }
     }
 
+    public function listGaleri()
+    {
+        try {
+            $res = $this->general->selectOrder("gallery", "id ASC limit 5");
+
+            return $res;
+        } catch (Exception $e) {
+            $this->services->closeDb($this->conn);
+            throw $e;
+        }
+    }
+
 
     public function get()
     {

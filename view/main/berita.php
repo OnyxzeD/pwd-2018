@@ -30,7 +30,7 @@ while ($berita = mysqli_fetch_assoc($data)) { ?>
             <div class="row">
                 <div class="col-md-5 order-2 order-md-1">
                 <a href="http://localhost/CRUD-NATIVE/index.php?r=front&op=berita&id=<?php echo $berita['id'];?>">
-                    <img class="img-fluid d-block" style="width: 445px; height: 335px"
+                    <img class="img-fluid d-block news-image" style="width: 445px; height: 335px"
                          src="<?php echo $base_url ?>assets/img/<?= $berita['thumbnail'] ?>"
                          onerror="this.src='<?php echo $base_url ?>assets/img/unknown-news.jpg'">
                 </a>
