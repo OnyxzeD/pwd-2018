@@ -33,11 +33,13 @@ while ($berita = mysqli_fetch_assoc($data)) { ?>
                     <img class="img-fluid d-block" style="width: 445px; height: 335px"
                          src="<?php echo $base_url ?>assets/img/<?= $berita['thumbnail'] ?>"
                          onerror="this.src='<?php echo $base_url ?>assets/img/unknown-news.jpg'">
-                         </a>
+                </a>
                 </div>
                 <div class="col-md-7 order-1 order-md-2">
                     <h3><?php echo $berita['judul']; ?></h3>
-                    <p class="my-3"><?php echo $berita['isi']; ?></p>
+                    <p class="my-3"><?php echo (strlen($berita['isi']) >= 150 ? substr($berita['isi'],0, 105) : $berita['isi'])." ...."; ?></p>
+                    <a href="http://localhost/CRUD-NATIVE/index.php?r=front&op=berita&id=<?php echo $berita['id'];?>" style="text-decoration:underline;">
+                    Read more &raquo;&raquo;</a>
                     <p class="my-3"><?= convertDate($berita['created_at'], 'indo') ?></p>
                 </div>
             </div>
@@ -45,15 +47,9 @@ while ($berita = mysqli_fetch_assoc($data)) { ?>
     </div>
 <?php } ?>
 
-<script src="<?php echo $base_url ?>assets/js/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="<?php echo $base_url ?>assets/css/js/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="<?php echo $base_url ?>assets/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+<script src="<?php echo $base_url ?>assets/js/jquery-3.2.1.slim.min.js"></script>
+<script src="<?php echo $base_url ?>assets/css/js/popper.min.js"></script>
+<script src="<?php echo $base_url ?>assets/js/bootstrap.min.js"></script>
 
 
 </body>

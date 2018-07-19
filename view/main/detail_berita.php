@@ -14,8 +14,7 @@ $base_url_index = 'http://localhost/CRUD-NATIVE/index.php?';
 
 <body>
 <?php include 'menu.php'; ?>
-<?php
-while ($berita = mysqli_fetch_assoc($data)) {?>
+<?php $berita = $data; ?>
 <div class="py-5">
     <div class="container">
       <div class="row">
@@ -32,10 +31,7 @@ while ($berita = mysqli_fetch_assoc($data)) {?>
       </div>
     </div>
   </div>
-<?php
-}
-
-?>
+  
 <script src="<?php echo $base_url ?>assets/js/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

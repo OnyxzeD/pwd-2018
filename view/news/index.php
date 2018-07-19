@@ -48,10 +48,6 @@
                                            onclick="return confirm('Yakin Hapus data?')">
                                             <i class="fa fa-trash"></i> Hapus
                                         </a>
-                                        <a class="btn btn-social btn-info"
-                                           href="<?php echo $base_url_index ?>r=news&op=read&id=<?= $row['id']; ?>">
-                                            <i class="fa fa-newspaper-o"></i> Baca
-                                        </a>
                                     </td>
                                 </tr>
                                 <?php

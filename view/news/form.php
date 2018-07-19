@@ -38,9 +38,6 @@
                                 <option>Pemberitahuan</option>
                                 <option>Lain-lain</option>
                             </select>
-                            <!--                            <input type="text" class="form-control" name="gelar" placeholder="Gelar"-->
-                            <!--                                   value="-->
-                            <? //= (isset($data['gelar']) ? $data['gelar'] : "") ?><!--">-->
                         </div>
                         <div class="timeline-item">
                             <div class="form-group">
@@ -49,7 +46,7 @@
                             </div>
                             <div class="timeline-body">
                                 <?php if (isset($data['mode']) && $data['mode'] == 'edit') { ?>
-                                    <img src="<?php echo $base_url ?>assets/img/<?= $data['foto'] ?>" alt="..."
+                                    <img src="<?php echo $base_url ?>assets/img/<?= $data['thumbnail'] ?>" alt="..."
                                          class="margin" id="preview"
                                          style="width: 200px; 200px;">
                                 <?php } else { ?>

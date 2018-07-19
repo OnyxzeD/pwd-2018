@@ -121,12 +121,22 @@ class NewsController
     public function update()
     {
         $id = (isset($_GET['id']) ? $_GET['id'] : $_POST['id']);
-        $data = mysqli_fetch_assoc($this->news->findTeacher($id));
+        $data = mysqli_fetch_assoc($this->news->findNews($id));
         $data['mode'] = "edit";
-        if (isset($_POST['nip'])) {
-            $column = ['nama', 'jk', 'alamat', 'gelar', 'masa_bakti', 'level', 'quotes', 'foto'];
-            $value = [$_POST['nama'], $_POST['jk'], $_POST['alamat'], $_POST['gelar'], $_POST['masa_bakti'], $_POST['jabatan'], $_POST['quotes']];
+        if (isset($_POST['id'])) {
+            $data = $_POST;
+            $data['mode'] = "edit";
+            $tags = "";
+            for ($i = 0; $i < count($_POST['tags']); $i++) {
+                if (($i + 1) == count($_POST['tags'])) {
+                    $tags .= $_POST['tags'][$i];
+                } else {
+                    $tags .= $_POST['tags'][$i] . ",";
+                }
+            }
 
+            $column = ['judul', 'isi', 'tags', 'thumbnail', 'penulis'];
+            $value = [$_POST['judul'], $_POST['isi'], $tags];
             // image process
             $img = $_FILES['foto'];
             if (isset($_FILES['foto'])) {
@@ -150,9 +160,12 @@ class NewsController
                 }
 
                 if (empty($errors) == true) {
-                    $file_name = $_POST['nip'] . "-" . $file_name;
+                    $name = explode(" ", $_POST['judul']);
+                    $file_name = $name[0] . "-" . date('Y-m-d') . $file_name;
                     move_uploaded_file($file_tmp, "$this->base_url/assets/img/$file_name");
                     array_push($value, $file_name);
+                    array_push($value, $_SESSION['account']['id']);
+
                     $res = $this->news->update($id, $column, $value);
                     if ($res == 1) {
                         $this->redirect('index.php?&r=news');
@@ -163,7 +176,6 @@ class NewsController
             }
 
         }
-
 
         $content = 'view/news/form.php';
         $header = 'Guru';

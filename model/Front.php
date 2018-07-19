@@ -42,9 +42,12 @@ class Front
     public function listDetailBerita($id)
     {
         try {
+            // update counter
             $res = $this->general->selectBy("berita","*", "id='".$id."'");
+            $data = mysqli_fetch_assoc($res);
+            $this->general->update('berita', ['counter'], [($data['counter'] + 1)], "id = '$id'");
 
-            return $res;
+            return $data;
         } catch (Exception $e) {
             $this->services->closeDb($this->conn);
             throw $e;

@@ -15,7 +15,7 @@ class News
         $this->conn = $this->services->openDb();
     }
 
-    public function findBerita($id)
+    public function findNews($id)
     {
         try {
             $res = $this->general->selectBy("berita", "*", "id = '$id'");
