@@ -29,9 +29,11 @@ while ($berita = mysqli_fetch_assoc($data)) { ?>
         <div class="container">
             <div class="row">
                 <div class="col-md-5 order-2 order-md-1">
+                <a href="http://localhost/CRUD-NATIVE/index.php?r=front&op=berita&id=<?php echo $berita['id'];?>">
                     <img class="img-fluid d-block" style="width: 445px; height: 335px"
                          src="<?php echo $base_url ?>assets/img/<?= $berita['thumbnail'] ?>"
                          onerror="this.src='<?php echo $base_url ?>assets/img/unknown-news.jpg'">
+                         </a>
                 </div>
                 <div class="col-md-7 order-1 order-md-2">
                     <h3><?php echo $berita['judul']; ?></h3>
