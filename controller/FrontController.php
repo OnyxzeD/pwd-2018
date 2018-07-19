@@ -24,7 +24,11 @@ class FrontController
             if (!$op || $op == 'list') {
                 $this->lists();
             } elseif ($op == 'berita') {
-                $this->berita();
+                if(isset($_GET['id'])){
+                    $this->detail_berita($_GET['id']);
+                }else{
+                $this->berita();                    
+                }
             } elseif ($op == 'profil') {
                 $this->profile();
             } elseif ($op == 'galeri') {
@@ -49,6 +53,12 @@ class FrontController
     {
         $data = $this->front->listBerita();
         include 'view/main/berita.php';
+    }
+
+    public function detail_berita($id)
+    {
+        $data = $this->front->listDetailBerita($id);
+        include 'view/main/detail_berita.php';
     }
 
     public function profile()

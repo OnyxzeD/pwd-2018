@@ -39,6 +39,19 @@ class Front
         }
     }
 
+    public function listDetailBerita($id)
+    {
+        try {
+            $res = $this->general->selectBy("berita","*", "id='".$id."'");
+
+            return $res;
+        } catch (Exception $e) {
+            $this->services->closeDb($this->conn);
+            throw $e;
+        }
+    }
+
+
     public function get()
     {
         try {
