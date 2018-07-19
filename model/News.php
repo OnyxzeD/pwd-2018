@@ -105,6 +105,18 @@ class News
             throw $e;
         }
     }
+
+    public function getMost()
+    {
+        try {
+            $res = $this->general->selectOrder("berita", "counter DESC limit 1");
+
+            return $res;
+        } catch (Exception $e) {
+            $this->services->closeDb($this->conn);
+            throw $e;
+        }
+    }
 }
 
 ?>

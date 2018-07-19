@@ -1,21 +1,21 @@
 <?php
 
 require_once 'model/News.php';
+require_once 'model/Student.php';
+require_once 'model/Teacher.php';
 
 class HomeController
 {
 
     private $news = NULL;
-    private $reporter = NULL;
-    private $categories = NULL;
-    private $newsCategories = NULL;
+    private $student = NULL;
+    private $teacher = NULL;
 
     public function __construct()
     {
-//        $this->news = new News();
-//        $this->reporter = new Reporter();
-//        $this->categories = new Categories();
-//        $this->newsCategories = new NewsCategories();
+        $this->news = new News();
+        $this->student = new Student();
+        $this->teacher = new Teacher();
     }
 
     public function redirect($location)
@@ -48,8 +48,12 @@ class HomeController
 
     public function lists()
     {
+        $dataBerita = mysqli_fetch_assoc($this->news->getMost());
+        $dataSiswa = mysqli_fetch_assoc($this->student->totalStudent());
+        $dataGuru = mysqli_fetch_assoc($this->teacher->totalTeacher());
         $content = 'view/home/index.php';
         $header = 'Dasboard';
+//        print_r($dataSiswa);
         include 'view/template/layout.php';
     }
 

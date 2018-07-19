@@ -78,6 +78,18 @@ class Teacher
         }
     }
 
+    public function totalTeacher()
+    {
+        try {
+            $res = mysqli_query($this->conn, "SELECT COUNT(nip) as total FROM guru");
+
+            return $res;
+        } catch (Exception $e) {
+            $this->services->closeDb($this->conn);
+            throw $e;
+        }
+    }
+
 }
 
 ?>

@@ -89,6 +89,18 @@ class Student
         }
     }
 
+    public function totalStudent()
+    {
+        try {
+            $res = mysqli_query($this->conn, "SELECT COUNT(nis) as total FROM siswa WHERE status <> 7");
+
+            return $res;
+        } catch (Exception $e) {
+            $this->services->closeDb($this->conn);
+            throw $e;
+        }
+    }
+
 }
 
 ?>
