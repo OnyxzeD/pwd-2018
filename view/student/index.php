@@ -23,7 +23,7 @@
             </form>
             <div class="box-body">
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="dataTable">
                         <thead>
                         <tr>
                             <th>NIS</th>
