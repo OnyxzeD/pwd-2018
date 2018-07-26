@@ -34,20 +34,16 @@ class FrontController
             } elseif ($op == 'galeri') {
                 $this->gallery();
             } else {
-//                $this->showError("Page not found", "Page for operation " . $op . " was not found!");
                 $this->redirect('index.php?&r=front');
             }
         } catch (Exception $e) {
             // some unknown Exception got through here, use application error page to display it
-//            $this->showError("Application error", $e->getMessage());
             $this->redirect('index.php?&r=front');
         }
     }
 
     public function lists()
     {
-//        $content = 'view/home/index.php';
-//        $header = 'Dasboard';
         include 'view/main/index.php';
     }
 
@@ -92,11 +88,4 @@ class FrontController
     }
 
 }
-
-// tambah asal tk siswa
-// sebelum import masukkan form
-// upload foto guru
-// crud berita
-// pagination
-
 ?>

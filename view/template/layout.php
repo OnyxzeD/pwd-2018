@@ -1,6 +1,7 @@
 <?php
-$base_url = 'http://localhost/CRUD-NATIVE/';
-$base_url_index = 'http://localhost/CRUD-NATIVE/index.php?';
+$url = explode("/", $_SERVER['SERVER_NAME']."".$_SERVER['REQUEST_URI']);
+$base_url = 'http://'.$url[0].'/'.$url[1].'/';
+$base_url_index = $base_url.'index.php?';
 ?>
 <!DOCTYPE html>
 <html>

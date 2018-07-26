@@ -66,25 +66,6 @@
                             }
                         }
                         ?>
-                        <!--                        <tr>-->
-                        <!--                            <td>1</td>-->
-                        <!--                            <td>admin</td>-->
-                        <!--                            <td>Administrator</td>-->
-                        <!--                            <td>Aktif</td>-->
-                        <!--                            <td>-->
-                        <!--                                <a class="btn btn-social btn-info"-->
-                        <!--                                   href="-->
-                        <?php //echo $base_url_index ?><!--r=news&op=update&id=--><?php //print $nc->id; ?><!--">-->
-                        <!--                                    <i class="fa fa-pencil"></i> ubah-->
-                        <!--                                </a>-->
-                        <!--                                <a class="btn btn-social btn-danger"-->
-                        <!--                                   href="-->
-                        <?php //echo $base_url_index ?><!--r=news&op=delete&id=--><?php //print $nc->id; ?><!--"-->
-                        <!--                                   onclick="return confirm('Yakin Hapus data?')">-->
-                        <!--                                    <i class="fa fa-trash"></i> hapus-->
-                        <!--                                </a>-->
-                        <!--                            </td>-->
-                        <!--                        </tr>-->
                         </tbody>
                     </table>
                 </div>

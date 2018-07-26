@@ -6,7 +6,7 @@ class TeacherController
 {
 
     private $teacher = NULL;
-    private $base_url = 'D:/xampp/htdocs/CRUD-NATIVE';
+    private $base_url = NULL;
 
     public function __construct()
     {
@@ -18,8 +18,9 @@ class TeacherController
         header('Location: ' . $location);
     }
 
-    public function handleRequest()
+    public function handleRequest($folder)
     {
+        $this->base_url = $folder;
         $op = isset($_GET['op']) ? $_GET['op'] : NULL;
         try {
             if (!$op || $op == 'list') {

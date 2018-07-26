@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 require_once 'controller/HomeController.php';
 require_once 'controller/FrontController.php';
 require_once 'controller/NewsController.php';
@@ -9,6 +10,8 @@ require_once 'controller/TeacherController.php';
 require_once 'controller/GalleryController.php';
 require_once 'controller/UserController.php';
 require_once 'controller/LoginController.php';
+
+$base_folder = dirname(__FILE__);
 
 $op = isset($_GET['r']) ? $_GET['r'] : NULL;
 try {
@@ -21,7 +24,6 @@ try {
             $controller->handleRequest();
         } else {
             header('Location: ' . 'index.php');
-//            $this->showError("Page not found", "Page for operation " . $op . " was not found!");
         }
     } else {
         if (!$op || $op == 'admin') {
@@ -41,19 +43,18 @@ try {
             $controller->handleRequest();
         } elseif ($op == 'teacher') {
             $controller = new TeacherController();
-            $controller->handleRequest();
+            $controller->handleRequest($base_folder);
         } elseif ($op == 'gallery') {
             $controller = new GalleryController();
             $controller->handleRequest();
         } elseif ($op == 'user') {
             $controller = new UserController();
-            $controller->handleRequest();
+            $controller->handleRequest($base_folder);
         } elseif ($op == 'login') {
             $controller = new LoginController();
             $controller->handleRequest();
         } else {
             header('Location: ' . 'index.php');
-//            $this->showError("Page not found", "Page for operation " . $op . " was not found!");
         }
     }
 } catch (Exception $e) {

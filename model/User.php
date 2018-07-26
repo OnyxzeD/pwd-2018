@@ -44,7 +44,7 @@ class User
     public function get()
     {
         try {
-            $res = $this->general->selectAll("user");
+            $res = $this->general->selectOrder("user","id ASC");
             $this->services->closeDb($this->conn);
 
             return $res;
