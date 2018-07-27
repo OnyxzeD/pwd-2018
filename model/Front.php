@@ -57,7 +57,7 @@ class Front
     public function listGaleri()
     {
         try {
-            $res = $this->general->selectOrder("gallery", "id ASC limit 5");
+            $res = $this->general->selectOrder("gallery", "id ASC");
 
             return $res;
         } catch (Exception $e) {
