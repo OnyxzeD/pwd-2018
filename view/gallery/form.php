@@ -15,30 +15,17 @@
                         <?= $errMsg ?>
                     </div>
                 <?php } ?>
-                <form role="form" action="<?= $formAction ?>" name="registration" method="post"
-                      enctype="multipart/form-data">
-                    <input type="hidden" name="id" value="<?= (isset($data['id']) ? $data['id'] : "") ?>">
+                <form role="form" action="<?php echo $base_url_index ?>r=gallery&op=upload&album=<?= $data['id'] ?>" name="registration" method="post"
+                      enctype="multipart/form-data" class="dropzone" id="dropzone">
+
+                </form>
+                <form role="form" action="<?= $formAction ?>" name="registration" method="post">
+                    <input type="hidden" id="album_id" name="id" value="<?= (isset($data['id']) ? $data['id'] : "") ?>">
                     <div class="box-body">
                         <div class="form-group">
-                            <label>Caption</label>
+                            <label>Nama Album</label>
                             <textarea class="form-control" rows="3" placeholder="Enter ..."
                                       name="caption"><?= (isset($data['caption']) ? $data['caption'] : "") ?></textarea>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Foto</label>
-                                <input type="file" class="form-control" name="path" onchange="readURL(this)">
-                            </div>
-                            <div class="timeline-body">
-                                <?php if (isset($data['mode']) && $data['mode'] == 'edit') { ?>
-                                    <img src="<?php echo $base_url ?>assets/img/<?= $data['path'] ?>" alt="..."
-                                         class="margin" id="preview"
-                                         style="width: 200px; 200px;">
-                                <?php } else { ?>
-                                    <img src="http://via.placeholder.com/200x200" alt="..." class="margin" id="preview"
-                                         style="">
-                                <?php } ?>
-                            </div>
                         </div>
                     </div>
                     <!-- /.box-body -->

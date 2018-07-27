@@ -46,7 +46,7 @@ try {
             $controller->handleRequest($base_folder);
         } elseif ($op == 'gallery') {
             $controller = new GalleryController();
-            $controller->handleRequest();
+            $controller->handleRequest($base_folder);
         } elseif ($op == 'user') {
             $controller = new UserController();
             $controller->handleRequest($base_folder);

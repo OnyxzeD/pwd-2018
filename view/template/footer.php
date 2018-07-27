@@ -52,6 +52,10 @@
 <!-- DataTables -->
 <script src="<?php echo $base_url ?>assets/AdminLTE-2.4.3/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="<?php echo $base_url ?>assets/AdminLTE-2.4.3/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- Dropzone -->
+<script src="<?php echo $base_url ?>assets/plugins/dropzone/dropzone.js"></script>
+<!--<script src="--><?php //echo $base_url ?><!--assets/plugins/dropzone/handle.js"></script>-->
+
 <script>
     $(function () {
         //Initialize Select2 Elements
@@ -65,5 +69,26 @@
         });
 
         $('#dataTable').DataTable();
-    })
+    });
+
+    new Dropzone("#dropzone", { // Make the whole body a dropzone
+//        url: baseurl+"index.php?r=gallery&op=upload", // Set the url
+        acceptedFiles: ".jpeg,.jpg,.png,.gif",
+        maxFilesize: 2,
+        addRemoveLinks: true,
+        removedfile: function (file) {
+            var name = file.name;
+
+            $.ajax({
+                type: 'POST',
+                url: baseurl + "index.php?r=gallery&op=upload&album=" + $('#album_id').val(),
+                data: {name: name, request: 2},
+                sucess: function (data) {
+                    console.log('success: ' + data);
+                }
+            });
+            var _ref;
+            return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
+        }
+    });
 </script>

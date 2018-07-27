@@ -22,16 +22,16 @@ $base_url_index = 'http://localhost/CRUD-NATIVE/index.php?';
                 <h1 class="mb-4" style="font-weight:1000;">Galeri</h1>
             </div>
         </div>
-                    <hr width="100%" style="height:7px;border:none;color:#333;background-color:#333;">
+        <hr width="100%" style="height:7px;border:none;color:#333;background-color:#333;">
         <div class="row">
-    <?php while ($galeri = mysqli_fetch_assoc($data)) { ?>
-            <div class="col-md-3 col-6 p-1 galeri-cover">
-                <a target="blank" href="<?php echo $base_url ?>/assets/img/<?php echo $galeri['path'];?>">
-                    <img class="d-block img-fluid galeri-img"
-                         src="<?php echo $base_url ?>/assets/img/<?php echo $galeri['path'];?>"> </a>
-            </div>
+            <?php while ($galeri = mysqli_fetch_assoc($data)) { ?>
+                <div class="col-md-3 col-6 p-1 galeri-cover">
+                    <a target="blank" href="<?php echo $base_url ?>/assets/img/<?php echo $galeri['path']; ?>">
+                        <img class="d-block img-fluid galeri-img"
+                             src="<?php echo $base_url ?>/assets/img/<?php echo $galeri['path']; ?>"> </a>
+                </div>
+            <?php } ?>
         </div>
-        <?php } ?>
     </div>
 </div>
 <script src="<?php echo $base_url ?>assets/js/jquery-3.2.1.slim.min.js"></script>

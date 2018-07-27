@@ -18,12 +18,12 @@
             </form>
             <div class="box-body">
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="dataTable">
                         <thead>
                         <tr>
                             <th>#</th>
+                            <th>Album</th>
                             <th>Path</th>
-                            <th>Caption</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -34,13 +34,13 @@
                             while ($row = mysqli_fetch_assoc($data)) { ?>
                                 <tr>
                                     <td><?= $row['id']; ?></td>
+                                    <td><?= $row['nama_album']; ?></td>
                                     <td><?= $row['path']; ?></td>
-                                    <td><?= $row['caption']; ?></td>
                                     <td>
-                                        <a class="btn btn-social btn-info"
-                                           href="<?php echo $base_url_index ?>r=gallery&op=update&id=<?= $row['id']; ?>">
-                                            <i class="fa fa-pencil"></i> Ubah
-                                        </a>
+<!--                                        <a class="btn btn-social btn-info"-->
+<!--                                           href="--><?php //echo $base_url_index ?><!--r=gallery&op=update&id=--><?//= $row['id']; ?><!--">-->
+<!--                                            <i class="fa fa-pencil"></i> Ubah-->
+<!--                                        </a>-->
                                         <a class="btn btn-social btn-danger"
                                            href="<?php echo $base_url_index ?>r=gallery&op=delete&id=<?= $row['id']; ?>"
                                            onclick="return confirm('Yakin Hapus data?')">

@@ -44,6 +44,9 @@ $base_url_index = $base_url.'index.php?';
           href="<?php echo $base_url ?>assets/AdminLTE-2.4.3/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
     <!-- DataTables -->
     <link rel="stylesheet" href="<?php echo $base_url ?>assets/AdminLTE-2.4.3/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <!-- Dropzone -->
+    <link rel="stylesheet" href="<?php echo $base_url ?>assets/plugins/dropzone/dropzone.css">
+    <link rel="stylesheet" href="<?php echo $base_url ?>assets/plugins/dropzone/addition.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

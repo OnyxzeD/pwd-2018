@@ -55,8 +55,8 @@ class Gallery
     public function create($value)
     {
         try {
-            $column = ['caption', 'path'];
-            $res = $this->general->insert('gallery', $column, $value);
+            $column = ['id', 'nama_album', 'created_at', 'created_by'];
+            $res = $this->general->insert('album', $column, $value);
 
             return $res;
         } catch (Exception $e) {
@@ -68,7 +68,7 @@ class Gallery
     public function update($id, $column, $value)
     {
         try {
-            $res = $this->general->update('gallery', $column, $value, "id = '$id'");
+            $res = $this->general->update('album', $column, $value, "id = '$id'");
 
             return $res;
         } catch (Exception $e) {
@@ -87,6 +87,11 @@ class Gallery
             $this->services->closeDb($this->conn);
             throw $e;
         }
+    }
+
+    public function getId()
+    {
+        return $this->general->generateId('id', 'album', 'AB');
     }
 
 }

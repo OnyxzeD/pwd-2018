@@ -10,10 +10,27 @@ Target Server Type    : MYSQL
 Target Server Version : 100119
 File Encoding         : 65001
 
-Date: 2018-07-19 13:49:54
+Date: 2018-07-27 16:12:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for album
+-- ----------------------------
+DROP TABLE IF EXISTS `album`;
+CREATE TABLE `album` (
+  `id` varchar(8) NOT NULL,
+  `nama_album` varchar(100) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `created_by` varchar(8) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of album
+-- ----------------------------
+INSERT INTO `album` VALUES ('AB0001', 'Desktop Background', '2018-07-27 16:10:17', 'US0003');
 
 -- ----------------------------
 -- Table structure for berita
@@ -25,7 +42,7 @@ CREATE TABLE `berita` (
   `isi` text,
   `tags` varchar(255) DEFAULT NULL,
   `penulis` varchar(50) DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` datetime DEFAULT NULL,
   `counter` int(11) unsigned DEFAULT '0',
   `thumbnail` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -44,14 +61,17 @@ DROP TABLE IF EXISTS `gallery`;
 CREATE TABLE `gallery` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `path` varchar(255) NOT NULL,
-  `caption` varchar(50) NOT NULL,
+  `caption` varchar(50) DEFAULT NULL,
+  `album_id` varchar(8) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of gallery
 -- ----------------------------
-INSERT INTO `gallery` VALUES ('1', 'G-848sb-2.jpg', 'Hari ini panas ngeeettzzzz yaa, jadi pengen matiin');
+INSERT INTO `gallery` VALUES ('1', 'G-848sb-2.jpg', 'Hari ini panas ngeeettzzzz yaa, jadi pengen matiin', null);
+INSERT INTO `gallery` VALUES ('19', 'AB0001-47608370-dark-hd-wallpapers.jpg', null, 'AB0001');
+INSERT INTO `gallery` VALUES ('21', 'AB0001-Dark-minimalist-wallpapers.png', null, 'AB0001');
 
 -- ----------------------------
 -- Table structure for guru
@@ -75,6 +95,7 @@ CREATE TABLE `guru` (
 -- ----------------------------
 INSERT INTO `guru` VALUES ('07597666681', 'Rinda Yudiawati', '0', 'Blitar', 'S.Pd', '5', 'user.jpg', '2', 'Seorang guru akan selamanya menjadi guru, meskipun Anda telah melupakan ilmu yang Anda pelajari dari');
 INSERT INTO `guru` VALUES ('197201242000031001', 'Choliq', '1', 'Kepanjen', 'S.Pd', '10', '197201242000031001-fd-orientacao.jpg', '2', 'Jika Anda bisa membaca ini, maka berterima kasihlah kepada guru');
+INSERT INTO `guru` VALUES ('197201242000031002', 'Maulidi', '1', 'STIKI', 'Ph. D', '10', '197201242000031002-sun-burn.jpg', '2', '');
 INSERT INTO `guru` VALUES ('197201242000031004', 'Sujiwo Tedjo', '1', 'Masdasd', 'Ph. D', '10', 'user.jpg', '1', null);
 INSERT INTO `guru` VALUES ('25417376392', 'Supadi', '1', 'Localhost', 'S.Pd', '3', 'user.jpg', '2', 'Orang hebat bisa melahirkan beberapa karya bermutu, tapi guru yang bermutu dapat melahirkan ribuan o');
 INSERT INTO `guru` VALUES ('67467676683', 'Tatik Sulistini', '0', 'Kalipare', 'S.Pd', '6', 'user.jpg', '2', 'Jadikanlah guru-guru Anda sebagai orang terhormat. Sehingga guru-guru terbaik datang kepada Anda, da');
@@ -229,3 +250,4 @@ CREATE TABLE `user` (
 INSERT INTO `user` VALUES ('US0001', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin@app.com', '1', '1', null);
 INSERT INTO `user` VALUES ('US0002', 'astojim', '4e8ec7422e234f969dcc5307a96003c3', 'astojim@app.com', '2', '0', null);
 INSERT INTO `user` VALUES ('US0003', 'OnyxzeD Hackazer', '0f8b882765143b00b9c1ea0d3071a88c', 'onyxzed@app.com', '1', '1', 'onyxzed-skull-user.png');
+INSERT INTO `user` VALUES ('US0004', '161111044@mhs.stiki.ac.id', 'e10adc3949ba59abbe56e057f20f883e', 'coba@app.com', '2', '1', 'coba-sb-2.jpg');
